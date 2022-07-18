@@ -22,6 +22,8 @@ class SignInViewController: UIViewController {
     
     @IBAction func loginButtonAction(_ sender: Any) {
         
+        let obj = HomeTabBarViewController.instantiate(appStoryboard: .home)
+        self.navigationController?.pushViewController(obj, animated: true)
     }
     
     @IBAction func goToSignUpButtonAction(_ sender: Any) {

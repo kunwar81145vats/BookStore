@@ -24,6 +24,10 @@
 		954FB40228857A150050AF7D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954FB40128857A150050AF7D /* SignUpViewController.swift */; };
 		954FB40728857BD90050AF7D /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954FB40628857BD90050AF7D /* UIViewController+Extensions.swift */; };
 		954FB40A28857D5F0050AF7D /* BSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954FB40928857D5F0050AF7D /* BSConstants.swift */; };
+		954FB40C288587CA0050AF7D /* UIView+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954FB40B288587CA0050AF7D /* UIView+Custom.swift */; };
+		954FB40F28858B1F0050AF7D /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954FB40E28858B1F0050AF7D /* HomeTabBarViewController.swift */; };
+		954FB41328858B660050AF7D /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954FB41128858B660050AF7D /* BookCell.swift */; };
+		954FB41428858B660050AF7D /* BookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 954FB41228858B660050AF7D /* BookCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		954FB40128857A150050AF7D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		954FB40628857BD90050AF7D /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		954FB40928857D5F0050AF7D /* BSConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSConstants.swift; sourceTree = "<group>"; };
+		954FB40B288587CA0050AF7D /* UIView+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Custom.swift"; sourceTree = "<group>"; };
+		954FB40E28858B1F0050AF7D /* HomeTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewController.swift; sourceTree = "<group>"; };
+		954FB41128858B660050AF7D /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		954FB41228858B660050AF7D /* BookCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +103,7 @@
 		954FB3ED288579A10050AF7D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				954FB40D28858AFE0050AF7D /* TabBarController */,
 				954FB3FC288579F80050AF7D /* Landing */,
 				954FB3FB288579F20050AF7D /* Sign in */,
 				954FB3FA288579E70050AF7D /* Sign up */,
@@ -174,6 +183,7 @@
 		954FB40428857BBE0050AF7D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				954FB41028858B4C0050AF7D /* Book Cell */,
 				954FB40828857D520050AF7D /* Constants */,
 				954FB40528857BC40050AF7D /* Extensions */,
 			);
@@ -184,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				954FB40628857BD90050AF7D /* UIViewController+Extensions.swift */,
+				954FB40B288587CA0050AF7D /* UIView+Custom.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -194,6 +205,23 @@
 				954FB40928857D5F0050AF7D /* BSConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		954FB40D28858AFE0050AF7D /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				954FB40E28858B1F0050AF7D /* HomeTabBarViewController.swift */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		954FB41028858B4C0050AF7D /* Book Cell */ = {
+			isa = PBXGroup;
+			children = (
+				954FB41128858B660050AF7D /* BookCell.swift */,
+				954FB41228858B660050AF7D /* BookCell.xib */,
+			);
+			path = "Book Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				954FB3E028856C6D0050AF7D /* LaunchScreen.storyboard in Resources */,
+				954FB41428858B660050AF7D /* BookCell.xib in Resources */,
 				954FB3EC288576D00050AF7D /* Home.storyboard in Resources */,
 				954FB3DD28856C6D0050AF7D /* Assets.xcassets in Resources */,
 				954FB3E828856D360050AF7D /* Main.storyboard in Resources */,
@@ -268,14 +297,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				954FB40C288587CA0050AF7D /* UIView+Custom.swift in Sources */,
 				954FB40228857A150050AF7D /* SignUpViewController.swift in Sources */,
 				954FB3F5288579D40050AF7D /* FavouritesViewController.swift in Sources */,
 				954FB3F3288579CA0050AF7D /* HomeViewController.swift in Sources */,
+				954FB41328858B660050AF7D /* BookCell.swift in Sources */,
 				954FB40A28857D5F0050AF7D /* BSConstants.swift in Sources */,
 				954FB3D528856C6C0050AF7D /* ViewController.swift in Sources */,
 				954FB3D128856C6C0050AF7D /* AppDelegate.swift in Sources */,
 				954FB3DB28856C6C0050AF7D /* BookStore.xcdatamodeld in Sources */,
 				954FB3F7288579DC0050AF7D /* NotificationsViewController.swift in Sources */,
+				954FB40F28858B1F0050AF7D /* HomeTabBarViewController.swift in Sources */,
 				954FB40728857BD90050AF7D /* UIViewController+Extensions.swift in Sources */,
 				954FB3F9288579E40050AF7D /* ProfileViewController.swift in Sources */,
 				954FB3FE28857A040050AF7D /* LandingViewController.swift in Sources */,
