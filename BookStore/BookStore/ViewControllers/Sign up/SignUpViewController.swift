@@ -25,8 +25,13 @@ class SignUpViewController: UIViewController {
     
     @IBAction func registerButtonAction(_ sender: Any) {
         
-        let obj = HomeTabBarViewController.instantiate(appStoryboard: .home)
-        self.navigationController?.pushViewController(obj, animated: true)
+        let param = ["email": "kunwar@gmail.com", "fullName": "kunwar asd", "password": "Vaasdadts123#"]
+        APIHelper.shared.signUp(param) { response, error in
+            guard let resp = response, error == nil else { return }
+            print(resp)
+        }
+//        let obj = HomeTabBarViewController.instantiate(appStoryboard: .home)
+//        self.navigationController?.pushViewController(obj, animated: true)
     }
     
     @IBAction func goToSignInButtonAction(_ sender: Any) {
