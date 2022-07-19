@@ -28,12 +28,11 @@ class SignUpViewController: UIViewController {
     
     @IBAction func registerButtonAction(_ sender: Any) {
         
-        if nameTextField.text?.replacingOccurrences(of: " ", with: "").count == 0
+        if let name = nameTextField.text?.replacingOccurrences(of: " ", with: ""), name.count == 0
         {
             let dialogMessage = UIAlertController(title: "Alert", message: "Please enter your full name", preferredStyle: .alert)
             dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
             self.present(dialogMessage, animated: true, completion: nil)
-
             return
         }
         
@@ -42,7 +41,6 @@ class SignUpViewController: UIViewController {
             let dialogMessage = UIAlertController(title: "Alert", message: "Please enter your email address", preferredStyle: .alert)
             dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
             self.present(dialogMessage, animated: true, completion: nil)
-
             return
         }
         
@@ -51,7 +49,6 @@ class SignUpViewController: UIViewController {
             let dialogMessage = UIAlertController(title: "Alert", message: "Please enter a password", preferredStyle: .alert)
             dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
             self.present(dialogMessage, animated: true, completion: nil)
-            
             return
         }
         if passwordTextField.text != confirmPasswordTextField.text
@@ -59,7 +56,6 @@ class SignUpViewController: UIViewController {
             let dialogMessage = UIAlertController(title: "Alert", message: "Confirm password does not match with the password", preferredStyle: .alert)
             dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
             self.present(dialogMessage, animated: true, completion: nil)
-
             return
         }
         

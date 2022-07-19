@@ -108,7 +108,7 @@
                                     <constraint firstAttribute="height" constant="50" id="2e1-WG-6kd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGb-8O-iDE">
                                 <rect key="frame" x="81.5" y="821" width="251" height="21"/>
@@ -201,7 +201,7 @@
                                     <constraint firstAttribute="height" constant="50" id="Ajw-09-1kn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UF-gM-4g3">
                                 <rect key="frame" x="334" y="44" width="80" height="50"/>
@@ -253,6 +253,12 @@
                             <constraint firstItem="sx0-fp-YRk" firstAttribute="top" secondItem="X7x-Zw-L1f" secondAttribute="bottom" constant="100" id="yn6-ve-xJQ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="confirmPasswordTextField" destination="X7x-Zw-L1f" id="afL-rT-IgP"/>
+                        <outlet property="emailTextField" destination="j3M-Qe-Qhx" id="jGh-ND-NTX"/>
+                        <outlet property="nameTextField" destination="9ti-cs-RLt" id="OzC-tS-zsH"/>
+                        <outlet property="passwordTextField" destination="SSP-aN-ntp" id="9OX-z5-rxL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qCr-E5-ODs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -313,7 +319,7 @@
                                     <constraint firstAttribute="height" constant="50" id="a8P-D7-ibv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login" translatesAutoresizingMaskIntoConstraints="NO" id="dQB-dH-wqk">
                                 <rect key="frame" x="-50.5" y="291" width="515" height="200"/>

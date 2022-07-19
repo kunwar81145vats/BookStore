@@ -39,6 +39,7 @@ class SignInViewController: UIViewController {
             let dialogMessage = UIAlertController(title: "Alert", message: "Please enter correct password", preferredStyle: .alert)
             dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
             self.present(dialogMessage, animated: true, completion: nil)
+            
             return
         }
         

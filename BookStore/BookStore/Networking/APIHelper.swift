@@ -13,6 +13,17 @@ class APIHelper {
 
     static let shared: APIHelper = APIHelper()
 
+    
+    func saveAuthToken(response: HTTPURLResponse?)
+    {
+        let responseHeaderDictionary = response?.allHeaderFields
+        
+        if let token = responseHeaderDictionary?["Authorization"] as? String
+        {
+            UserDefaults.standard.set(token, forKey: UserDefaultKeys.authToken.rawValue)
+        }
+    }
+    
     func signUp(_ param: [String: String], completion: @escaping(_ response: User?,_ error: ErrorModel?) -> Void )
     {
         let provider = MoyaProvider<BSServices>()
@@ -20,16 +31,11 @@ class APIHelper {
             
             switch result {
             case .success(let response):
-                print(response)
-                
-                if let json = try! JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any] {
-                    
-                    print(json)
-                }
                 
                 do {
                     let userObj = try JSONDecoder().decode(User.self, from: response.data)
-                    
+                    let response = response.response
+                    self.saveAuthToken(response: response)
                     completion(userObj, nil)
                 }
                 catch let err
@@ -52,16 +58,11 @@ class APIHelper {
             
             switch result {
             case .success(let response):
-                print(response)
-                
-                if let json = try! JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any] {
-                    
-                    print(json)
-                }
-                
+
                 do {
                     let userObj = try JSONDecoder().decode(User.self, from: response.data)
-                    
+                    let response = response.response
+                    self.saveAuthToken(response: response)
                     completion(userObj, nil)
                 }
                 catch let err

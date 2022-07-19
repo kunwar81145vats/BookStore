@@ -12,3 +12,7 @@ enum AppStoryboard: String {
     case login = "Main"
     case home = "Home"
 }
+
+enum UserDefaultKeys: String {
+    case authToken = "Authorization"
+}
