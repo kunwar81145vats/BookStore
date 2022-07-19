@@ -32,6 +32,8 @@
 		956ACDEE28873DD2006B9359 /* APIUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956ACDED28873DD2006B9359 /* APIUrls.swift */; };
 		956ACDF028873E62006B9359 /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956ACDEF28873E62006B9359 /* APIServices.swift */; };
 		956ACDF228874099006B9359 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956ACDF128874099006B9359 /* ErrorModel.swift */; };
+		956ACDF528875E65006B9359 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956ACDF428875E65006B9359 /* User.swift */; };
+		956ACDF8288760EF006B9359 /* SharedSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956ACDF7288760EF006B9359 /* SharedSingleton.swift */; };
 		9C61B2086E54BBCAC2387F40 /* Pods_BookStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543EE48D8426C4A91555D58F /* Pods_BookStore.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +68,8 @@
 		956ACDED28873DD2006B9359 /* APIUrls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUrls.swift; sourceTree = "<group>"; };
 		956ACDEF28873E62006B9359 /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
 		956ACDF128874099006B9359 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
+		956ACDF428875E65006B9359 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		956ACDF7288760EF006B9359 /* SharedSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedSingleton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		954FB3CF28856C6C0050AF7D /* BookStore */ = {
 			isa = PBXGroup;
 			children = (
+				956ACDF328875E5C006B9359 /* Models */,
 				956ACDEA28873D64006B9359 /* Networking */,
 				954FB40428857BBE0050AF7D /* Common */,
 				954FB40328857A1E0050AF7D /* Storyboards */,
@@ -207,6 +212,7 @@
 		954FB40428857BBE0050AF7D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				956ACDF6288760DD006B9359 /* Shared Singleton */,
 				954FB41028858B4C0050AF7D /* Book Cell */,
 				954FB40828857D520050AF7D /* Constants */,
 				954FB40528857BC40050AF7D /* Extensions */,
@@ -257,6 +263,22 @@
 				956ACDF128874099006B9359 /* ErrorModel.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		956ACDF328875E5C006B9359 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				956ACDF428875E65006B9359 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		956ACDF6288760DD006B9359 /* Shared Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				956ACDF7288760EF006B9359 /* SharedSingleton.swift */,
+			);
+			path = "Shared Singleton";
 			sourceTree = "<group>";
 		};
 		C5AC015F01170388045361AC /* Pods */ = {
@@ -393,6 +415,7 @@
 				954FB40A28857D5F0050AF7D /* BSConstants.swift in Sources */,
 				954FB3D528856C6C0050AF7D /* ViewController.swift in Sources */,
 				954FB3D128856C6C0050AF7D /* AppDelegate.swift in Sources */,
+				956ACDF8288760EF006B9359 /* SharedSingleton.swift in Sources */,
 				956ACDEC28873D75006B9359 /* APIHelper.swift in Sources */,
 				954FB3DB28856C6C0050AF7D /* BookStore.xcdatamodeld in Sources */,
 				956ACDF228874099006B9359 /* ErrorModel.swift in Sources */,
@@ -405,6 +428,7 @@
 				954FB3FE28857A040050AF7D /* LandingViewController.swift in Sources */,
 				954FB40028857A0D0050AF7D /* SignInViewController.swift in Sources */,
 				954FB3D328856C6C0050AF7D /* SceneDelegate.swift in Sources */,
+				956ACDF528875E65006B9359 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,12 +18,32 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func skipButtonAction(_ sender: Any) {
+        
+        let obj = HomeTabBarViewController.instantiate(appStoryboard: .home)
+        self.navigationController?.pushViewController(obj, animated: true)
     }
     
     @IBAction func loginButtonAction(_ sender: Any) {
         
-        let obj = HomeTabBarViewController.instantiate(appStoryboard: .home)
-        self.navigationController?.pushViewController(obj, animated: true)
+        if emailTextField.text?.count == 0
+        {
+            let dialogMessage = UIAlertController(title: "Alert", message: "Please enter your email address", preferredStyle: .alert)
+            dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
+            self.present(dialogMessage, animated: true, completion: nil)
+
+            return
+        }
+        
+        if passwordTextField.text?.count ?? 0 < 8
+        {
+            let dialogMessage = UIAlertController(title: "Alert", message: "Please enter correct password", preferredStyle: .alert)
+            dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
+            self.present(dialogMessage, animated: true, completion: nil)
+            return
+        }
+        
+        let param: [String: String] = ["email": emailTextField.text ?? "", "password": passwordTextField.text ?? ""]
+        sendSignInRequest(param)
     }
     
     @IBAction func goToSignUpButtonAction(_ sender: Any) {
@@ -41,6 +61,27 @@ class SignInViewController: UIViewController {
         
         let obj = SignUpViewController.instantiate(appStoryboard: .login)
         self.navigationController?.pushViewController(obj, animated: true)
+    }
+    
+    func sendSignInRequest(_ param: [String: String])
+    {
+        APIHelper.shared.signIn(param) { response, error in
+            guard let resp = response, error == nil else
+            {
+                if let err = error
+                {
+                    let dialogMessage = UIAlertController(title: "Alert", message: err.message, preferredStyle: .alert)
+                    dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
+                    self.present(dialogMessage, animated: true, completion: nil)
+                }
+                return
+            }
+            
+            SharedSingleton.shared.user = resp
+            
+            let obj = HomeTabBarViewController.instantiate(appStoryboard: .home)
+            self.navigationController?.pushViewController(obj, animated: true)
+        }
     }
     
 }
