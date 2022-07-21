@@ -51,4 +51,11 @@ extension FavouritesViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfSections section: Int) -> Int {
         return 1
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let obj = BookDetailsViewController.instantiate(appStoryboard: .home)
+        self.navigationController?.pushViewController(obj, animated: true)
+
+    }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		954C701B2889F3C6004BA584 /* BookDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C701A2889F3C6004BA584 /* BookDetailsViewController.swift */; };
 		954FB3D128856C6C0050AF7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954FB3D028856C6C0050AF7D /* AppDelegate.swift */; };
 		954FB3D328856C6C0050AF7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954FB3D228856C6C0050AF7D /* SceneDelegate.swift */; };
 		954FB3DB28856C6C0050AF7D /* BookStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 954FB3D928856C6C0050AF7D /* BookStore.xcdatamodeld */; };
@@ -40,6 +41,7 @@
 		04AFC650EFBBD8EEEE3382AD /* Pods-BookStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookStore.debug.xcconfig"; path = "Target Support Files/Pods-BookStore/Pods-BookStore.debug.xcconfig"; sourceTree = "<group>"; };
 		543EE48D8426C4A91555D58F /* Pods_BookStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		733C7D5822F5906D7B13C30C /* Pods-BookStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookStore.release.xcconfig"; path = "Target Support Files/Pods-BookStore/Pods-BookStore.release.xcconfig"; sourceTree = "<group>"; };
+		954C701A2889F3C6004BA584 /* BookDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsViewController.swift; sourceTree = "<group>"; };
 		954FB3CD28856C6C0050AF7D /* BookStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		954FB3D028856C6C0050AF7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		954FB3D228856C6C0050AF7D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		954C70192889F3B4004BA584 /* Book Details */ = {
+			isa = PBXGroup;
+			children = (
+				954C701A2889F3C6004BA584 /* BookDetailsViewController.swift */,
+			);
+			path = "Book Details";
+			sourceTree = "<group>";
+		};
 		954FB3C428856C6C0050AF7D = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +139,7 @@
 		954FB3ED288579A10050AF7D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				954C70192889F3B4004BA584 /* Book Details */,
 				954FB40D28858AFE0050AF7D /* TabBarController */,
 				954FB3FC288579F80050AF7D /* Landing */,
 				954FB3FB288579F20050AF7D /* Sign in */,
@@ -420,6 +431,7 @@
 				954FB40728857BD90050AF7D /* UIViewController+Extensions.swift in Sources */,
 				956ACDF028873E62006B9359 /* APIServices.swift in Sources */,
 				954FB3F9288579E40050AF7D /* ProfileViewController.swift in Sources */,
+				954C701B2889F3C6004BA584 /* BookDetailsViewController.swift in Sources */,
 				956ACDEE28873DD2006B9359 /* APIUrls.swift in Sources */,
 				954FB3FE28857A040050AF7D /* LandingViewController.swift in Sources */,
 				954FB40028857A0D0050AF7D /* SignInViewController.swift in Sources */,
