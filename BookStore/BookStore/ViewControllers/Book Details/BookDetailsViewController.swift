@@ -19,13 +19,20 @@ class BookDetailsViewController: UIViewController {
         addToCartButton.layer.borderColor = addToCartButton.tintColor.cgColor
         addToCartButton.layer.borderWidth = 1.0
         addToCartButton.layer.cornerRadius = 5
-        
-        self.navigationController?.isNavigationBarHidden = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
     @IBAction func backButtonAction(_ sender: Any) {
         
-        
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func locationsButtonAction(_ sender: Any) {
+        
+        let obj = LocationsViewController.instantiate(appStoryboard: .home)
+        self.navigationController?.pushViewController(obj, animated: true)
     }
 }

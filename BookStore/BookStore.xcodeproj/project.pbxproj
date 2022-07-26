@@ -42,6 +42,7 @@
 		9551A5CE289000F9008F6D5A /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9551A5CD289000F9008F6D5A /* CheckoutViewController.swift */; };
 		9551A5D128900110008F6D5A /* Checkout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9551A5D028900110008F6D5A /* Checkout.storyboard */; };
 		9551A5D42890053B008F6D5A /* CheckoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9551A5D32890053B008F6D5A /* CheckoutCell.swift */; };
+		9551A5D628901447008F6D5A /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9551A5D528901447008F6D5A /* LocationsViewController.swift */; };
 		956ACDEC28873D75006B9359 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956ACDEB28873D75006B9359 /* APIHelper.swift */; };
 		956ACDEE28873DD2006B9359 /* APIUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956ACDED28873DD2006B9359 /* APIUrls.swift */; };
 		956ACDF028873E62006B9359 /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956ACDEF28873E62006B9359 /* APIServices.swift */; };
@@ -92,6 +93,7 @@
 		9551A5CD289000F9008F6D5A /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		9551A5D028900110008F6D5A /* Checkout.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Checkout.storyboard; sourceTree = "<group>"; };
 		9551A5D32890053B008F6D5A /* CheckoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutCell.swift; sourceTree = "<group>"; };
+		9551A5D528901447008F6D5A /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		956ACDEB28873D75006B9359 /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		956ACDED28873DD2006B9359 /* APIUrls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUrls.swift; sourceTree = "<group>"; };
 		956ACDEF28873E62006B9359 /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				954C701A2889F3C6004BA584 /* BookDetailsViewController.swift */,
+				9551A5D528901447008F6D5A /* LocationsViewController.swift */,
 			);
 			path = "Book Details";
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				954FB3F9288579E40050AF7D /* ProfileViewController.swift in Sources */,
 				954C701B2889F3C6004BA584 /* BookDetailsViewController.swift in Sources */,
 				956ACDEE28873DD2006B9359 /* APIUrls.swift in Sources */,
+				9551A5D628901447008F6D5A /* LocationsViewController.swift in Sources */,
 				954FB3FE28857A040050AF7D /* LandingViewController.swift in Sources */,
 				954FB40028857A0D0050AF7D /* SignInViewController.swift in Sources */,
 				954C7068288FF40A004BA584 /* ProfileCell.swift in Sources */,
