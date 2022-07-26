@@ -14,12 +14,15 @@ class LandingViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+
     
     @IBAction func getStartedButtonAction(_ sender: Any) {
         
-        self.navigationController?.isNavigationBarHidden = true
-        let obj = SignUpViewController.instantiate(appStoryboard: .login)
+        let obj = HomeTabBarViewController.instantiate(appStoryboard: .home)
         self.navigationController?.pushViewController(obj, animated: true)
+//        self.navigationController?.isNavigationBarHidden = true
+//        let obj = SignUpViewController.instantiate(appStoryboard: .login)
+//        self.navigationController?.pushViewController(obj, animated: true)
     }
 
 }

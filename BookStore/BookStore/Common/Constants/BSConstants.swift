@@ -11,6 +11,8 @@ import Foundation
 enum AppStoryboard: String {
     case login = "Main"
     case home = "Home"
+    case profile = "Profile"
+    case checkout = "Checkout"
 }
 
 enum UserDefaultKeys: String {
