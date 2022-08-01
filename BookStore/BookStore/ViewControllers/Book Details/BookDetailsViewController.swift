@@ -11,6 +11,7 @@ class BookDetailsViewController: UIViewController {
 
     @IBOutlet weak var addToCartButton: UIButton!
 
+    var book: Book!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,12 +20,20 @@ class BookDetailsViewController: UIViewController {
         addToCartButton.layer.borderColor = addToCartButton.tintColor.cgColor
         addToCartButton.layer.borderWidth = 1.0
         addToCartButton.layer.cornerRadius = 5
+        
+        showBookDetails()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
     }
+    
+    func showBookDetails()
+    {
+        
+    }
+    
     @IBAction func backButtonAction(_ sender: Any) {
         
         self.navigationController?.popViewController(animated: true)

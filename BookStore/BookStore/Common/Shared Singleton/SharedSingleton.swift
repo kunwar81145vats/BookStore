@@ -14,4 +14,11 @@ class SharedSingleton: NSObject {
     var user: User?
     
     private override init() {}
+    
+    func showErrorDialog(_ vc: UIViewController, message: String? = "Something went wrong")
+    {
+        let dialogMessage = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
+        vc.present(dialogMessage, animated: true, completion: nil)
+    }
 }

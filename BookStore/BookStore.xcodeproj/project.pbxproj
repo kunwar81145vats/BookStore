@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		951D55562897F86700B79181 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951D55552897F86700B79181 /* Book.swift */; };
 		954C701B2889F3C6004BA584 /* BookDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C701A2889F3C6004BA584 /* BookDetailsViewController.swift */; };
 		954C7063288FEDC7004BA584 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C7062288FEDC7004BA584 /* NotificationCell.swift */; };
 		954C7068288FF40A004BA584 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954C7066288FF40A004BA584 /* ProfileCell.swift */; };
@@ -56,6 +57,7 @@
 		04AFC650EFBBD8EEEE3382AD /* Pods-BookStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookStore.debug.xcconfig"; path = "Target Support Files/Pods-BookStore/Pods-BookStore.debug.xcconfig"; sourceTree = "<group>"; };
 		543EE48D8426C4A91555D58F /* Pods_BookStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		733C7D5822F5906D7B13C30C /* Pods-BookStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookStore.release.xcconfig"; path = "Target Support Files/Pods-BookStore/Pods-BookStore.release.xcconfig"; sourceTree = "<group>"; };
+		951D55552897F86700B79181 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		954C701A2889F3C6004BA584 /* BookDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsViewController.swift; sourceTree = "<group>"; };
 		954C7062288FEDC7004BA584 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		954C7066288FF40A004BA584 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				956ACDF428875E65006B9359 /* User.swift */,
+				951D55552897F86700B79181 /* Book.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				956ACDEC28873D75006B9359 /* APIHelper.swift in Sources */,
 				954FB3DB28856C6C0050AF7D /* BookStore.xcdatamodeld in Sources */,
 				956ACDF228874099006B9359 /* ErrorModel.swift in Sources */,
+				951D55562897F86700B79181 /* Book.swift in Sources */,
 				954FB3F7288579DC0050AF7D /* NotificationsViewController.swift in Sources */,
 				9551A5BB288FF89A008F6D5A /* UpdateProfileViewController.swift in Sources */,
 				954FB40F28858B1F0050AF7D /* HomeTabBarViewController.swift in Sources */,

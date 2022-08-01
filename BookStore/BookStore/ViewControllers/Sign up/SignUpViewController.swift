@@ -16,7 +16,6 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -30,32 +29,24 @@ class SignUpViewController: UIViewController {
         
         if let name = nameTextField.text?.replacingOccurrences(of: " ", with: ""), name.count == 0
         {
-            let dialogMessage = UIAlertController(title: "Alert", message: "Please enter your full name", preferredStyle: .alert)
-            dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
-            self.present(dialogMessage, animated: true, completion: nil)
+            SharedSingleton.shared.showErrorDialog(self, message: "Please enter your full name")
             return
         }
         
         if emailTextField.text?.count == 0
         {
-            let dialogMessage = UIAlertController(title: "Alert", message: "Please enter your email address", preferredStyle: .alert)
-            dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
-            self.present(dialogMessage, animated: true, completion: nil)
+            SharedSingleton.shared.showErrorDialog(self, message: "Please enter your email address")
             return
         }
         
         if passwordTextField.text?.count ?? 0 < 8
         {
-            let dialogMessage = UIAlertController(title: "Alert", message: "Please enter a password", preferredStyle: .alert)
-            dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
-            self.present(dialogMessage, animated: true, completion: nil)
+            SharedSingleton.shared.showErrorDialog(self, message: "Please enter a password")
             return
         }
         if passwordTextField.text != confirmPasswordTextField.text
         {
-            let dialogMessage = UIAlertController(title: "Alert", message: "Confirm password does not match with the password", preferredStyle: .alert)
-            dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
-            self.present(dialogMessage, animated: true, completion: nil)
+            SharedSingleton.shared.showErrorDialog(self, message: "Confirm password does not match with the password")
             return
         }
         
@@ -87,9 +78,7 @@ class SignUpViewController: UIViewController {
             {
                 if let err = error
                 {
-                    let dialogMessage = UIAlertController(title: "Error", message: err.message, preferredStyle: .alert)
-                    dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
-                    self.present(dialogMessage, animated: true, completion: nil)
+                    SharedSingleton.shared.showErrorDialog(self, message: err.message)
                 }
                 return
             }

@@ -71,9 +71,7 @@ class SignInViewController: UIViewController {
             {
                 if let err = error
                 {
-                    let dialogMessage = UIAlertController(title: "Alert", message: err.message, preferredStyle: .alert)
-                    dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
-                    self.present(dialogMessage, animated: true, completion: nil)
+                    SharedSingleton.shared.showErrorDialog(self, message: err.message)
                 }
                 return
             }

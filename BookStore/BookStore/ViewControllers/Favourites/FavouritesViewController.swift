@@ -27,6 +27,7 @@ class FavouritesViewController: UIViewController {
         
         collectionView.collectionViewLayout = layout
         checkoutButton.layer.cornerRadius = checkoutButton.frame.size.width/2
+        checkoutButton.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -12,6 +12,9 @@ import Moya
 enum BSServices {
     case signUp(_ param: [String: String])
     case signIn(_ param: [String: String])
+    case getBooks
+    case searchBooks(_ search: String)
+    case bookDetails(_ param: [String: String])
 }
 
 
@@ -19,6 +22,9 @@ enum BSServices {
 extension BSServices: TargetType {
     var method: Moya.Method {
         switch self {
+            
+        case .getBooks, .searchBooks, .bookDetails:
+            return .get
         default:
             return .post
         }
@@ -39,6 +45,13 @@ extension BSServices: TargetType {
             return Api.signIn
         case .signUp(_):
             return Api.signUp
+        case .getBooks:
+            return Api.getBooks
+        case .searchBooks(let search):
+            
+            return Api.searchBooks + "/\(search)"
+        case .bookDetails(_):
+            return Api.getBooks
         }
     }
     
@@ -48,6 +61,12 @@ extension BSServices: TargetType {
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         case .signUp(let param):
             return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .getBooks:
+            return .requestParameters(parameters: [:], encoding: URLEncoding.default)
+        case .searchBooks(_):
+            return .requestParameters(parameters: [:], encoding: URLEncoding.default)
+        case .bookDetails(let param):
+            return .requestParameters(parameters: param, encoding: URLEncoding.default)
         }
     }
     
