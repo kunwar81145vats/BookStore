@@ -168,4 +168,63 @@ class APIHelper {
             }
         }
     }
+    
+    //MARK: - Get Cart Details
+    //API method to get cart details
+    func getCartDetails(_ param: [String: String], completion: @escaping(_ response: Cart?,_ error: ErrorModel?) -> Void )
+    {
+        let provider = MoyaProvider<BSServices>()
+        provider.request(.bookDetails(param)) { result in
+            
+            switch result {
+            case .success(let response):
+
+                do {
+                    let userObj = try JSONDecoder().decode(Cart.self, from: response.data)
+                    let response = response.response
+                    self.saveAuthToken(response: response)
+                    completion(userObj, nil)
+                }
+                catch let err
+                {
+                    completion(nil, ErrorModel.init("500", err.localizedDescription))
+                }
+
+                break
+            case .failure(let error):
+                print(error)
+                completion(nil, ErrorModel.init("500", error.localizedDescription))
+            }
+        }
+    }
+    
+    //MARK: - Update Cart Details
+    //API method to Update book details
+    func updateCartDetails(_ param: [String: String], completion: @escaping(_ response: Cart?,_ error: ErrorModel?) -> Void )
+    {
+        let provider = MoyaProvider<BSServices>()
+        provider.request(.bookDetails(param)) { result in
+            
+            switch result {
+            case .success(let response):
+
+                do {
+                    let userObj = try JSONDecoder().decode(Cart.self, from: response.data)
+                    let response = response.response
+                    self.saveAuthToken(response: response)
+                    completion(userObj, nil)
+                }
+                catch let err
+                {
+                    completion(nil, ErrorModel.init("500", err.localizedDescription))
+                }
+
+                break
+            case .failure(let error):
+                print(error)
+                completion(nil, ErrorModel.init("500", error.localizedDescription))
+            }
+        }
+    }
+
 }

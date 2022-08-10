@@ -19,4 +19,5 @@ struct Api {
     static let signIn = "/api/User/signin"
     static let getBooks = "/api/Book"
     static let searchBooks = "/api/Book/search"
+    static let cart = "/api/Cart"
 }

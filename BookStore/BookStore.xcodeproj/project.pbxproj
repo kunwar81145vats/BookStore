@@ -50,6 +50,7 @@
 		956ACDF228874099006B9359 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956ACDF128874099006B9359 /* ErrorModel.swift */; };
 		956ACDF528875E65006B9359 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956ACDF428875E65006B9359 /* User.swift */; };
 		956ACDF8288760EF006B9359 /* SharedSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956ACDF7288760EF006B9359 /* SharedSingleton.swift */; };
+		957723D528A41B4D0003E6E5 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957723D428A41B4D0003E6E5 /* Cart.swift */; };
 		959A4F8628A21037003A04C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 959A4F8528A21037003A04C9 /* GoogleService-Info.plist */; };
 		959A4F8A28A21874003A04C9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 959A4F8928A21874003A04C9 /* FirebaseAnalytics */; };
 		959A4F8C28A21874003A04C9 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 959A4F8B28A21874003A04C9 /* FirebaseCrashlytics */; };
@@ -107,6 +108,7 @@
 		956ACDF128874099006B9359 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
 		956ACDF428875E65006B9359 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		956ACDF7288760EF006B9359 /* SharedSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedSingleton.swift; sourceTree = "<group>"; };
+		957723D428A41B4D0003E6E5 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		959A4F8528A21037003A04C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -440,6 +442,7 @@
 			children = (
 				956ACDF428875E65006B9359 /* User.swift */,
 				951D55552897F86700B79181 /* Book.swift */,
+				957723D428A41B4D0003E6E5 /* Cart.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				954FB3DB28856C6C0050AF7D /* BookStore.xcdatamodeld in Sources */,
 				956ACDF228874099006B9359 /* ErrorModel.swift in Sources */,
 				951D55562897F86700B79181 /* Book.swift in Sources */,
+				957723D528A41B4D0003E6E5 /* Cart.swift in Sources */,
 				954FB3F7288579DC0050AF7D /* NotificationsViewController.swift in Sources */,
 				9551A5BB288FF89A008F6D5A /* UpdateProfileViewController.swift in Sources */,
 				954FB40F28858B1F0050AF7D /* HomeTabBarViewController.swift in Sources */,

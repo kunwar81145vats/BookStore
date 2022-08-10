@@ -15,6 +15,8 @@ enum BSServices {
     case getBooks
     case searchBooks(_ search: String)
     case bookDetails(_ param: [String: String])
+    case getCart
+    case updateCart(_ param: [String: AnyObject])
 }
 
 
@@ -23,7 +25,7 @@ extension BSServices: TargetType {
     var method: Moya.Method {
         switch self {
             
-        case .getBooks, .searchBooks, .bookDetails:
+        case .getBooks, .searchBooks, .bookDetails, .getCart:
             return .get
         default:
             return .post
@@ -52,6 +54,10 @@ extension BSServices: TargetType {
             return Api.searchBooks + "/\(search)"
         case .bookDetails(_):
             return Api.getBooks
+        case .getCart:
+            return Api.cart
+        case .updateCart(_):
+            return Api.cart
         }
     }
     
@@ -67,12 +73,20 @@ extension BSServices: TargetType {
             return .requestParameters(parameters: [:], encoding: URLEncoding.default)
         case .bookDetails(let param):
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
+        case .getCart:
+            return .requestParameters(parameters: [:], encoding: URLEncoding.default)
+        case .updateCart(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         }
     }
     
     var headers: [String: String]? {
         
         switch self {
+            
+        case .updateCart(_):
+            return ["Content-type": "application/json",
+                    "Authorization": SharedSingleton.shared.getAuthToken()]
         default:
             return ["Content-type": "application/json"]
         }

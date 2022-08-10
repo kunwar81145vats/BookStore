@@ -21,4 +21,19 @@ class SharedSingleton: NSObject {
         dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
         vc.present(dialogMessage, animated: true, completion: nil)
     }
+    
+    func getAuthToken() -> String
+    {
+        return UserDefaults.standard.string(forKey: UserDefaultKeys.authToken.rawValue) ?? ""
+    }
+    
+    func saveAuthToken(_ token: String)
+    {
+        UserDefaults.standard.set(token, forKey: UserDefaultKeys.authToken.rawValue)
+    }
+    
+    func deleteAuthToken()
+    {
+        UserDefaults.standard.removeObject(forKey: UserDefaultKeys.authToken.rawValue)
+    }
 }
