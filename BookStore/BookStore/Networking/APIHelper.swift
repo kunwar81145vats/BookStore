@@ -65,6 +65,7 @@ class APIHelper {
 
                 do {
                     let userObj = try JSONDecoder().decode(User.self, from: response.data)
+
                     let response = response.response
                     self.saveAuthToken(response: response)
                     completion(userObj, nil)
@@ -180,10 +181,35 @@ class APIHelper {
             case .success(let response):
 
                 do {
-                    let userObj = try JSONDecoder().decode(Cart.self, from: response.data)
-                    let response = response.response
-                    self.saveAuthToken(response: response)
-                    completion(userObj, nil)
+                    let Obj = try JSONDecoder().decode(Cart.self, from: response.data)
+                    completion(Obj, nil)
+                }
+                catch let err
+                {
+                    completion(nil, ErrorModel.init("999", err.localizedDescription))
+                }
+
+                break
+            case .failure(let error):
+                print(error)
+                completion(nil, ErrorModel.init("500", error.localizedDescription))
+            }
+        }
+    }
+    
+    //MARK: - Insert Book in Cart
+    //API method to insert Book in Cart
+    func insertBookinCart(_ bookId: Int, completion: @escaping(_ response: Cart?,_ error: ErrorModel?) -> Void )
+    {
+        let provider = MoyaProvider<BSServices>()
+        provider.request(.addBookToCart(bookId, 1)) { result in
+            
+            switch result {
+            case .success(let response):
+                
+                do {
+                    let Obj = try JSONDecoder().decode(Cart.self, from: response.data)
+                    completion(Obj, nil)
                 }
                 catch let err
                 {
@@ -198,21 +224,20 @@ class APIHelper {
         }
     }
     
-    //MARK: - Update Cart Details
-    //API method to Update book details
-    func updateCartDetails(_ param: [String: Any], completion: @escaping(_ response: Cart?,_ error: ErrorModel?) -> Void )
+    
+    //MARK: - Remove Book in Cart
+    //API method to remove Book in Cart
+    func removeBookinCart(_ bookId: Int, completion: @escaping(_ response: Cart?,_ error: ErrorModel?) -> Void )
     {
         let provider = MoyaProvider<BSServices>()
-        provider.request(.updateCart(param)) { result in
+        provider.request(.removeBookFromCart(bookId)) { result in
             
             switch result {
             case .success(let response):
-
+                
                 do {
-                    let userObj = try JSONDecoder().decode(Cart.self, from: response.data)
-                    let response = response.response
-                    self.saveAuthToken(response: response)
-                    completion(userObj, nil)
+                    let Obj = try JSONDecoder().decode(Cart.self, from: response.data)
+                    completion(Obj, nil)
                 }
                 catch let err
                 {
@@ -226,5 +251,32 @@ class APIHelper {
             }
         }
     }
+    
+    //MARK: - Update Book in Cart
+    //API method to update Book in Cart
+    func updateBookinCart(_ bookId: Int, _ count: Int, completion: @escaping(_ response: Cart?,_ error: ErrorModel?) -> Void )
+    {
+        let provider = MoyaProvider<BSServices>()
+        provider.request(.updateBookinCart(bookId, count)) { result in
+            
+            switch result {
+            case .success(let response):
+                
+                do {
+                    let Obj = try JSONDecoder().decode(Cart.self, from: response.data)
+                    completion(Obj, nil)
+                }
+                catch let err
+                {
+                    completion(nil, ErrorModel.init("500", err.localizedDescription))
+                }
 
+                break
+            case .failure(let error):
+                print(error)
+                completion(nil, ErrorModel.init("500", error.localizedDescription))
+            }
+        }
+    }
+    
 }

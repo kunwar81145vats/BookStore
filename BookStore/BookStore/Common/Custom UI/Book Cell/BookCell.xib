@@ -42,7 +42,7 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" systemColor="systemGray6Color"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="N0V-NP-zhp" secondAttribute="trailing" id="096-1E-emg"/>
                 <constraint firstItem="sSk-Yf-iLf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="9mQ-M4-4Sm"/>
@@ -70,6 +70,9 @@
     </objects>
     <resources>
         <image name="bookPlaceholder" width="150" height="150"/>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

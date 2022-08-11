@@ -11,12 +11,22 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    let textArr: [String] = ["Profile", "Address", "Orders", "Logout"]
+    var textArr: [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         tableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "ProfileCell")
+        
+        if UserDefaults.standard.value(forKey: UserDefaultKeys.authToken.rawValue) != nil
+        {
+            SharedSingleton.shared.showLoginDialog(self, message: "Please login to the app to view this feature.")
+        }
+        else
+        {
+            textArr = ["Profile", "Address", "Orders", "Logout"]
+            tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -40,7 +40,10 @@ class FavouritesViewController: UIViewController {
         self.title = "Favourites"
         self.navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = false
-        getCartDetails()
+        if UserDefaults.standard.value(forKey: UserDefaultKeys.authToken.rawValue) != nil
+        {
+            self.getCartDetails()
+        }
     }
     
     @IBAction func checkoutButtonAction(_ sender: Any) {
@@ -89,7 +92,7 @@ extension FavouritesViewController: UICollectionViewDataSource, UICollectionView
         
         let book = books[indexPath.row]
         
-        if let imgUrl = URL(string: book.coverImageUrl)
+        if let imgUrl = URL(string: book.coverImageURL)
         {
             cell.imageView.kf.setImage(with: imgUrl, placeholder: UIImage(named: "bookPlaceholder"))
         }
@@ -116,7 +119,7 @@ extension FavouritesViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         self.tabBarController?.tabBar.isHidden = true
-        let obj = BookDetailsViewController.instantiate(appStoryboard: .home)
+        let obj = BookDetailsViewController.instantiate(appStoryboard: .home) as BookDetailsViewController
         obj.book = books[indexPath.row]
         self.navigationController?.pushViewController(obj, animated: true)
 

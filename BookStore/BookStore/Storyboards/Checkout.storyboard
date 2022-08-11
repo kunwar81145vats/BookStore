@@ -280,6 +280,7 @@
                     </view>
                     <connections>
                         <outlet property="booksCostLabel" destination="ZDJ-S4-XxD" id="G4d-Nm-d6A"/>
+                        <outlet property="tableView" destination="DGz-XM-rmO" id="do0-ts-W90"/>
                         <outlet property="taxesLabel" destination="zJE-pV-or0" id="kZN-A6-GHB"/>
                         <outlet property="totalCostLabel" destination="gly-tq-vp0" id="Frv-Qv-csN"/>
                     </connections>

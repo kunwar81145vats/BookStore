@@ -387,6 +387,10 @@
                             <constraint firstItem="WQ8-P1-Ss3" firstAttribute="trailing" secondItem="dQB-dH-wqk" secondAttribute="trailing" id="tND-BQ-kU3"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="S7T-ou-kI7" id="UBX-hv-7MM"/>
+                        <outlet property="passwordTextField" destination="JXl-PH-Tz2" id="Bpb-0v-6QD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTH-Qr-EPF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

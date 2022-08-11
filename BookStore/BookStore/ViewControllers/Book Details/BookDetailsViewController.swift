@@ -37,14 +37,24 @@ class BookDetailsViewController: UIViewController {
     
     func showBookDetails()
     {
-        if let imgUrl = URL(string: book.coverImageUrl)
+        if let imgUrl = URL(string: book.coverImageURL)
         {
             bookImageView.kf.setImage(with: imgUrl, placeholder: UIImage(named: "bookPlaceholder"))
         }
         bookNameLabel.text = book.title
         authorNameLabel.text = book.author
         summaryTextView.text = book.summary
-        addToCartButton.setTitle("Add to Cart ($\(book.price ?? 0)", for: .normal)
+        
+        if let cartBook = SharedSingleton.shared.cart?.books?.first(where: { obj in
+            obj.bookId == book.bookId
+        })
+        {
+            addToCartButton.setTitle("(\(cartBook.quantity ?? 1)) Add more to Cart ($\(book.price ?? 0))", for: .normal)
+        }
+        else
+        {
+            addToCartButton.setTitle("Add to Cart ($\(book.price ?? 0))", for: .normal)
+        }
     }
     
     @IBAction func favouriteButtonAction(_ sender: Any) {
@@ -57,7 +67,14 @@ class BookDetailsViewController: UIViewController {
     
     @IBAction func addToCartButtonAction(_ sender: Any) {
         
-        updateCart()
+        if UserDefaults.standard.value(forKey: UserDefaultKeys.authToken.rawValue) != nil
+        {
+            self.updateCart()
+        }
+        else
+        {
+            SharedSingleton.shared.showLoginDialog(self, message: "Please login to add books to the cart.")
+        }
     }
     
     @IBAction func locationsButtonAction(_ sender: Any) {
@@ -68,32 +85,40 @@ class BookDetailsViewController: UIViewController {
     
     func updateCart()
     {
-        var books: [Book] = []
-        if let cartBooks = SharedSingleton.shared.cart?.books
+        if let cartBook = SharedSingleton.shared.cart?.books?.first(where: { obj in
+            obj.bookId == book.bookId
+        })
         {
-            books = cartBooks
-        }
-        
-        var cartBook: Book = book
-        cartBook.quantity = 1
-        
-        books.append(cartBook)
-        
-        var paramBooks: [[String: Any]] = []
-        
-        for obj in books
-        {
-            paramBooks.append(["bookId": obj.bookId ?? 0, "quantity": 1])
-        }
-        
-        APIHelper.shared.updateCartDetails(["books": paramBooks]) { _, error in
-            guard error == nil else {
+            APIHelper.shared.updateBookinCart(cartBook.bookId, cartBook.quantity + 1) { response, error in
                 
-                if let err = error
-                {
-                    SharedSingleton.shared.showErrorDialog(self, message: err.message)
+                guard let resp = response, error == nil else {
+                    
+                    if let err = error
+                    {
+                        SharedSingleton.shared.showErrorDialog(self, message: err.message)
+                    }
+                    return
                 }
-                return
+                
+                SharedSingleton.shared.cart = resp
+                self.showBookDetails()
+            }
+        }
+        else
+        {
+            APIHelper.shared.insertBookinCart(book.bookId) { response, error in
+                
+                guard let resp = response, error == nil else {
+                    
+                    if let err = error
+                    {
+                        SharedSingleton.shared.showErrorDialog(self, message: err.message)
+                    }
+                    return
+                }
+                
+                SharedSingleton.shared.cart = resp
+                self.showBookDetails()
             }
         }
     }

@@ -16,7 +16,9 @@ enum BSServices {
     case searchBooks(_ search: String)
     case bookDetails(_ param: [String: String])
     case getCart
-    case updateCart(_ param: [String: Any])
+    case removeBookFromCart(_ bookId: Int)
+    case addBookToCart(_ bookId: Int, _ count: Int)
+    case updateBookinCart(_ bookId: Int, _ count: Int)
 }
 
 
@@ -27,6 +29,12 @@ extension BSServices: TargetType {
             
         case .getBooks, .searchBooks, .bookDetails, .getCart:
             return .get
+            
+        case .updateBookinCart(_, _):
+            return .put
+            
+        case .removeBookFromCart(_):
+            return .delete
         default:
             return .post
         }
@@ -50,14 +58,17 @@ extension BSServices: TargetType {
         case .getBooks:
             return Api.getBooks
         case .searchBooks(let search):
-            
             return Api.searchBooks + "/\(search)"
         case .bookDetails(_):
             return Api.getBooks
         case .getCart:
             return Api.cart
-        case .updateCart(_):
+        case .addBookToCart(let bookId, let count):
+            return Api.cart + "/\(bookId)/\(count)"
+        case .removeBookFromCart(_):
             return Api.cart
+        case .updateBookinCart(let bookId, let count):
+            return Api.cart + "/\(bookId)/\(count)"
         }
     }
     
@@ -75,8 +86,12 @@ extension BSServices: TargetType {
             return .requestParameters(parameters: param, encoding: URLEncoding.default)
         case .getCart:
             return .requestParameters(parameters: [:], encoding: URLEncoding.default)
-        case .updateCart(let param):
-            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
+        case .removeBookFromCart(_):
+            return .requestParameters(parameters: [:], encoding: URLEncoding.default)
+        case .addBookToCart(_,_):
+            return .requestParameters(parameters: [:], encoding: URLEncoding.default)
+        case .updateBookinCart(_, _):
+            return .requestParameters(parameters: [:], encoding: URLEncoding.default)
         }
     }
     
@@ -84,9 +99,9 @@ extension BSServices: TargetType {
         
         switch self {
             
-        case .updateCart(_):
+        case .removeBookFromCart(_), .addBookToCart(_,_), .updateBookinCart(_,_), .getCart:
             return ["Content-type": "application/json",
-                    "Authorization": SharedSingleton.shared.getAuthToken()]
+                    "Authorization": "Bearer " + SharedSingleton.shared.getAuthToken()]
         default:
             return ["Content-type": "application/json"]
         }

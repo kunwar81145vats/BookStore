@@ -13,7 +13,8 @@ class CheckoutViewController: UIViewController {
     @IBOutlet weak var totalCostLabel: UILabel!
     @IBOutlet weak var taxesLabel: UILabel!
     @IBOutlet weak var booksCostLabel: UILabel!
-        
+    @IBOutlet weak var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,22 +46,9 @@ class CheckoutViewController: UIViewController {
         totalCostLabel.text = "$\(total)"
     }
     
-    func updateCart()
+    func updateBooksInCart(_ id: Int, _ quantity: Int)
     {
-        var books: [Book] = []
-        if let cartBooks = SharedSingleton.shared.cart?.books
-        {
-            books = cartBooks
-        }
-                
-        var paramBooks: [[String: Any]] = []
-        
-        for obj in books
-        {
-            paramBooks.append(["bookId": obj.bookId ?? 0, "quantity": 1])
-        }
-        
-        APIHelper.shared.updateCartDetails(["books": paramBooks]) { response, error in
+        APIHelper.shared.updateBookinCart(id, quantity) { response, error in
             guard let resp = response, error == nil else {
                 
                 if let err = error
@@ -71,9 +59,27 @@ class CheckoutViewController: UIViewController {
             }
             
             SharedSingleton.shared.cart = resp
-            self.updatePage()
+            self.tableView.reloadData()
         }
     }
+    
+    func removeBookFromCart(_ id: Int)
+    {
+        APIHelper.shared.removeBookinCart(id) { response, error in
+            guard let resp = response, error == nil else {
+                
+                if let err = error
+                {
+                    SharedSingleton.shared.showErrorDialog(self, message: err.message)
+                }
+                return
+            }
+            
+            SharedSingleton.shared.cart = resp
+            self.tableView.reloadData()
+        }
+    }
+    
 }
 
 extension CheckoutViewController: UITableViewDataSource, UITableViewDelegate
@@ -97,7 +103,7 @@ extension CheckoutViewController: UITableViewDataSource, UITableViewDelegate
             
             if let book = SharedSingleton.shared.cart?.books?[indexPath.row]
             {
-                if let imgUrl = URL(string: book.coverImageUrl)
+                if let imgUrl = URL(string: book.coverImageURL)
                 {
                     cell.coverImageView.kf.setImage(with: imgUrl, placeholder: UIImage(named: "bookPlaceholder"))
                 }
@@ -114,32 +120,35 @@ extension CheckoutViewController: UITableViewDataSource, UITableViewDelegate
     
     @objc func increaseBookCountButtonAction(_ sender: UIButton)
     {
-        var quantity: Int = SharedSingleton.shared.cart?.books?[sender.tag].quantity ?? 1
-        quantity = quantity + 1
-        SharedSingleton.shared.cart?.books?[sender.tag].quantity = quantity
-        updateCart()
+        if let book = SharedSingleton.shared.cart?.books?[sender.tag]
+        {
+            let quantity: Int = book.quantity + 1
+            updateBooksInCart(book.bookId, quantity)
+        }
     }
     
     @objc func decreaseBookCountButtonAction(_ sender: UIButton)
     {
-        var quantity: Int = SharedSingleton.shared.cart?.books?[sender.tag].quantity ?? 1
-        
-        if quantity == 1
+        if let book = SharedSingleton.shared.cart?.books?[sender.tag]
         {
-            SharedSingleton.shared.cart?.books?.remove(at: sender.tag)
+            let quantity: Int = book.quantity - 1
+            
+            if quantity == 0
+            {
+                removeBookFromCart(book.bookId)
+            }
+            else
+            {
+                updateBooksInCart(book.bookId, quantity)
+            }
         }
-        else
-        {
-            quantity = quantity - 1
-        }
-        
-        SharedSingleton.shared.cart?.books?[sender.tag].quantity = quantity
-        updateCart()
     }
     
     @objc func deleteBookButtonAction(_ sender: UIButton)
     {
-        SharedSingleton.shared.cart?.books?.remove(at: sender.tag)
-        updateCart()
+        if let book = SharedSingleton.shared.cart?.books?[sender.tag]
+        {
+            removeBookFromCart(book.bookId)
+        }
     }
 }

@@ -48,7 +48,11 @@ class HomeViewController: UIViewController {
         self.title = "Home"
         self.navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = false
-        self.getCartDetails()
+        
+        if UserDefaults.standard.value(forKey: UserDefaultKeys.authToken.rawValue) != nil
+        {
+            self.getCartDetails()
+        }
     }
     
     @IBAction func checkoutButtonAction(_ sender: Any) {
@@ -169,7 +173,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         let book = searchTextField.text?.count ?? 0 > 1 ? searchResults[indexPath.row] : books[indexPath.row]
         
-        if let imgUrl = URL(string: book.coverImageUrl)
+        if let imgUrl = URL(string: book.coverImageURL)
         {
             cell.imageView.kf.setImage(with: imgUrl, placeholder: UIImage(named: "bookPlaceholder"))
         }
@@ -196,7 +200,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         self.tabBarController?.tabBar.isHidden = true
-        let obj = BookDetailsViewController.instantiate(appStoryboard: .home)
+        let obj = BookDetailsViewController.instantiate(appStoryboard: .home) as BookDetailsViewController
         
         let book = searchTextField.text?.count ?? 0 > 1 ? searchResults[indexPath.row] : books[indexPath.row]
         
