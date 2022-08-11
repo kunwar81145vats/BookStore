@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import FirebaseAnalytics
 
 class BookDetailsViewController: UIViewController {
 
