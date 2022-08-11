@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomeViewController: UIViewController {
 
@@ -37,6 +38,7 @@ class HomeViewController: UIViewController {
         checkoutButton.isHidden = true
         cancelSearchBtnWidthConstraint.constant = 0
         searchTextField.delegate = self
+        checkoutButton.layer.cornerRadius = checkoutButton.frame.size.height/2
         
         getAllBooks()
     }
@@ -46,6 +48,7 @@ class HomeViewController: UIViewController {
         self.title = "Home"
         self.navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = false
+        self.getCartDetails()
     }
     
     @IBAction func checkoutButtonAction(_ sender: Any) {
@@ -87,6 +90,23 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func getCartDetails()
+    {
+        APIHelper.shared.getCartDetails() { response, error in
+            guard let resp = response, error == nil else {
+                
+                if let err = error
+                {
+                    SharedSingleton.shared.showErrorDialog(self, message: err.message)
+                }
+                return
+            }
+            
+            SharedSingleton.shared.cart = resp
+            self.updateCheckoutButton()
+        }
+    }
+    
     func searchBooks(_ search: String)
     {
         APIHelper.shared.searchBooks(search) { response, error in
@@ -101,6 +121,18 @@ class HomeViewController: UIViewController {
             
             self.searchResults = resp
             self.collectionView.reloadData()
+        }
+    }
+    
+    func updateCheckoutButton()
+    {
+        if let books = SharedSingleton.shared.cart?.books, books.count != 0
+        {
+            checkoutButton.isHidden = false
+        }
+        else
+        {
+            checkoutButton.isHidden = true
         }
     }
 }
@@ -137,6 +169,10 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         let book = searchTextField.text?.count ?? 0 > 1 ? searchResults[indexPath.row] : books[indexPath.row]
         
+        if let imgUrl = URL(string: book.coverImageUrl)
+        {
+            cell.imageView.kf.setImage(with: imgUrl, placeholder: UIImage(named: "bookPlaceholder"))
+        }
         cell.nameLabel.text = book.title
         cell.authorLabel.text = book.author
         cell.priceLabel.text = "$\(book.price ?? 0)"
@@ -161,6 +197,10 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         self.tabBarController?.tabBar.isHidden = true
         let obj = BookDetailsViewController.instantiate(appStoryboard: .home)
+        
+        let book = searchTextField.text?.count ?? 0 > 1 ? searchResults[indexPath.row] : books[indexPath.row]
+        
+        obj.book = book
         self.navigationController?.pushViewController(obj, animated: true)
     }
 }

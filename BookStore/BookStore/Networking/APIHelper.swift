@@ -171,10 +171,10 @@ class APIHelper {
     
     //MARK: - Get Cart Details
     //API method to get cart details
-    func getCartDetails(_ param: [String: String], completion: @escaping(_ response: Cart?,_ error: ErrorModel?) -> Void )
+    func getCartDetails(completion: @escaping(_ response: Cart?,_ error: ErrorModel?) -> Void )
     {
         let provider = MoyaProvider<BSServices>()
-        provider.request(.bookDetails(param)) { result in
+        provider.request(.getCart) { result in
             
             switch result {
             case .success(let response):
@@ -200,10 +200,10 @@ class APIHelper {
     
     //MARK: - Update Cart Details
     //API method to Update book details
-    func updateCartDetails(_ param: [String: String], completion: @escaping(_ response: Cart?,_ error: ErrorModel?) -> Void )
+    func updateCartDetails(_ param: [String: Any], completion: @escaping(_ response: Cart?,_ error: ErrorModel?) -> Void )
     {
         let provider = MoyaProvider<BSServices>()
-        provider.request(.bookDetails(param)) { result in
+        provider.request(.updateCart(param)) { result in
             
             switch result {
             case .success(let response):

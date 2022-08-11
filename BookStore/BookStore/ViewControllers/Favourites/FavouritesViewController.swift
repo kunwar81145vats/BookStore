@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FavouritesViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var checkoutButton: UIButton!
 
+    var books: [Book] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +31,8 @@ class FavouritesViewController: UIViewController {
         collectionView.collectionViewLayout = layout
         checkoutButton.layer.cornerRadius = checkoutButton.frame.size.width/2
         checkoutButton.isHidden = true
+        
+        checkoutButton.layer.cornerRadius = checkoutButton.frame.size.height/2
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +40,7 @@ class FavouritesViewController: UIViewController {
         self.title = "Favourites"
         self.navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = false
+        getCartDetails()
     }
     
     @IBAction func checkoutButtonAction(_ sender: Any) {
@@ -44,13 +50,53 @@ class FavouritesViewController: UIViewController {
         self.navigationController?.pushViewController(obj, animated: true)
     }
     
+    func getCartDetails()
+    {
+        APIHelper.shared.getCartDetails() { response, error in
+            guard let resp = response, error == nil else {
+                
+                if let err = error
+                {
+                    SharedSingleton.shared.showErrorDialog(self, message: err.message)
+                }
+                return
+            }
+            
+            SharedSingleton.shared.cart = resp
+            self.updateCheckoutButton()
+        }
+    }
+    
+    
+    func updateCheckoutButton()
+    {
+        if let books = SharedSingleton.shared.cart?.books, books.count != 0
+        {
+            checkoutButton.isHidden = false
+        }
+        else
+        {
+            checkoutButton.isHidden = true
+        }
+    }
+    
 }
 
 extension FavouritesViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookCell", for: indexPath as IndexPath) as! BookCell
-                
+        
+        let book = books[indexPath.row]
+        
+        if let imgUrl = URL(string: book.coverImageUrl)
+        {
+            cell.imageView.kf.setImage(with: imgUrl, placeholder: UIImage(named: "bookPlaceholder"))
+        }
+        cell.nameLabel.text = book.title
+        cell.authorLabel.text = book.author
+        cell.priceLabel.text = "$\(book.price ?? 0)"
+        
         return cell
     }
     
@@ -60,7 +106,7 @@ extension FavouritesViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return books.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfSections section: Int) -> Int {
@@ -71,6 +117,7 @@ extension FavouritesViewController: UICollectionViewDataSource, UICollectionView
         
         self.tabBarController?.tabBar.isHidden = true
         let obj = BookDetailsViewController.instantiate(appStoryboard: .home)
+        obj.book = books[indexPath.row]
         self.navigationController?.pushViewController(obj, animated: true)
 
     }

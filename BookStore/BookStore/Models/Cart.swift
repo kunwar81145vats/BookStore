@@ -10,7 +10,7 @@ import UIKit
 struct Cart: Codable {
 
     let id: Int!
-    let books: [Book]?
+    var books: [Book]?
     
     enum CodingKeys: String, CodingKey {
         case id = "cartId"

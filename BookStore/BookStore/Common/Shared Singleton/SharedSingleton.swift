@@ -12,6 +12,7 @@ class SharedSingleton: NSObject {
     static let shared: SharedSingleton = SharedSingleton()
     
     var user: User?
+    var cart: Cart?
     
     private override init() {}
     

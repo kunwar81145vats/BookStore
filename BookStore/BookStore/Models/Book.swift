@@ -15,7 +15,7 @@ struct Book: Codable {
     let author: String!
     let price: Double!
     let summary: String!
-    let quantity: Int!
+    var quantity: Int!
     let coverImageUrl: String!
     let coordinateX: Double!
     let coordinateY: Double!

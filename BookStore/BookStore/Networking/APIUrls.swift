@@ -9,8 +9,7 @@ import Foundation
 
 let isProd = false
 
-//let devBaseUrl = "https://c965-72-140-74-147.ngrok.io"
-let devBaseUrl = "http://kunwarv-001-site1.itempurl.com"
+let devBaseUrl = "https://c965-72-140-74-147.ngrok.io"
 let prodBaseUrl = ""
 
 struct Api {

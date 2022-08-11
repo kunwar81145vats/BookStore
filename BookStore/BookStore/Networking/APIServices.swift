@@ -16,7 +16,7 @@ enum BSServices {
     case searchBooks(_ search: String)
     case bookDetails(_ param: [String: String])
     case getCart
-    case updateCart(_ param: [String: AnyObject])
+    case updateCart(_ param: [String: Any])
 }
 
 
