@@ -70,6 +70,8 @@ class BookDetailsViewController: UIViewController {
         if UserDefaults.standard.value(forKey: UserDefaultKeys.authToken.rawValue) != nil
         {
             self.updateCart()
+            
+            Analytics.logEvent("add_to_cart", parameters: nil)
         }
         else
         {
