@@ -6,13 +6,28 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
 class LocationsViewController: UIViewController {
 
+    @IBOutlet weak var mapView: MKMapView!
+    var book: Book!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if let coordX = Double(book.coordinateX), let coordY = Double(book.coordinateY)
+        {
+            let location = CLLocationCoordinate2D(latitude: coordX, longitude: coordY)
+            let place = MKPointAnnotation()
+            place.coordinate = location
+            place.title = book.title
+            
+            let region = MKCoordinateRegion(center: location, latitudinalMeters: 10000, longitudinalMeters: 10000)
+            mapView.addAnnotation(place)
+            mapView.setRegion(region, animated: true)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

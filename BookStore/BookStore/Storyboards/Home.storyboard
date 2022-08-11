@@ -569,6 +569,9 @@
                             <constraint firstItem="eR5-Gf-d8F" firstAttribute="trailing" secondItem="yG5-GX-1Io" secondAttribute="trailing" id="m4O-ej-GCJ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="yG5-GX-1Io" id="LyQ-Nh-5UO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="739-6t-J28" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

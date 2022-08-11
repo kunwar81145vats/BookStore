@@ -82,7 +82,8 @@ class BookDetailsViewController: UIViewController {
     
     @IBAction func locationsButtonAction(_ sender: Any) {
         
-        let obj = LocationsViewController.instantiate(appStoryboard: .home)
+        let obj = LocationsViewController.instantiate(appStoryboard: .home) as LocationsViewController
+        obj.book = book
         self.navigationController?.pushViewController(obj, animated: true)
     }
     
