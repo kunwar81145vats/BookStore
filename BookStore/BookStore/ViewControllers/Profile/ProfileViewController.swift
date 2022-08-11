@@ -18,7 +18,7 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "ProfileCell")
         
-        if UserDefaults.standard.value(forKey: UserDefaultKeys.authToken.rawValue) != nil
+        if UserDefaults.standard.value(forKey: UserDefaultKeys.authToken.rawValue) == nil
         {
             SharedSingleton.shared.showLoginDialog(self, message: "Please login to the app to view this feature.")
         }
