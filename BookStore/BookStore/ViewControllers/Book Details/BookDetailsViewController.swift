@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import FirebaseAnalytics
+import JGProgressHUD
 
 class BookDetailsViewController: UIViewController {
 
@@ -112,12 +113,17 @@ class BookDetailsViewController: UIViewController {
     
     func updateCart()
     {
+        let hud = JGProgressHUD()
+        hud.textLabel.text = ""
+        hud.show(in: self.view)
+        
         if let cartBook = SharedSingleton.shared.cart?.books?.first(where: { obj in
             obj.bookId == book.bookId
         })
         {
             APIHelper.shared.updateBookinCart(cartBook.bookId, cartBook.quantity + 1) { response, error in
                 
+                hud.dismiss()
                 guard let resp = response, error == nil else {
                     
                     if let err = error
@@ -135,6 +141,7 @@ class BookDetailsViewController: UIViewController {
         {
             APIHelper.shared.insertBookinCart(book.bookId) { response, error in
                 
+                hud.dismiss()
                 guard let resp = response, error == nil else {
                     
                     if let err = error

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class SignInViewController: UIViewController {
 
@@ -71,7 +72,13 @@ class SignInViewController: UIViewController {
     
     func sendSignInRequest(_ param: [String: String])
     {
+        let hud = JGProgressHUD()
+        hud.textLabel.text = ""
+        hud.show(in: self.view)
+        
         APIHelper.shared.signIn(param) { response, error in
+            
+            hud.dismiss()
             guard let resp = response, error == nil else
             {
                 if let err = error

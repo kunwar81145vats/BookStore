@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (5.6.2)
   - IQKeyboardManagerSwift (6.5.10)
+  - JGProgressHUD (2.2)
   - Kingfisher (7.3.2)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
@@ -9,6 +10,7 @@ PODS:
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift
+  - JGProgressHUD
   - Kingfisher (~> 7.0)
   - Moya
 
@@ -16,15 +18,17 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - IQKeyboardManagerSwift
+    - JGProgressHUD
     - Kingfisher
     - Moya
 
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
+  JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   Kingfisher: 0086ad83719761ba9b2cdaf6ef4d5b4878cbae23
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
 
-PODFILE CHECKSUM: c00a9e6553df98435144d71791163c7616fedba2
+PODFILE CHECKSUM: 5abac59ddb16d37b61978cbda80915c5d8d69476
 
 COCOAPODS: 1.11.3

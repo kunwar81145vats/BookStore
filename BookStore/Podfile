@@ -9,5 +9,6 @@ target 'BookStore' do
   pod 'Moya'
   pod 'IQKeyboardManagerSwift'
   pod 'Kingfisher', '~> 7.0'
+  pod 'JGProgressHUD'
 
 end

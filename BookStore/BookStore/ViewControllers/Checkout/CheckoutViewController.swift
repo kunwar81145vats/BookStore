@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import JGProgressHUD
 
 class CheckoutViewController: UIViewController {
 
@@ -49,7 +50,13 @@ class CheckoutViewController: UIViewController {
     
     func updateBooksInCart(_ id: Int, _ quantity: Int)
     {
+        let hud = JGProgressHUD()
+        hud.textLabel.text = ""
+        hud.show(in: self.view)
+        
         APIHelper.shared.updateBookinCart(id, quantity) { response, error in
+            
+            hud.dismiss()
             guard let resp = response, error == nil else {
                 
                 if let err = error
@@ -67,7 +74,13 @@ class CheckoutViewController: UIViewController {
     
     func removeBookFromCart(_ id: Int)
     {
+        let hud = JGProgressHUD()
+        hud.textLabel.text = ""
+        hud.show(in: self.view)
+        
         APIHelper.shared.removeBookinCart(id) { response, error in
+            
+            hud.dismiss()
             guard let resp = response, error == nil else {
                 
                 if let err = error
