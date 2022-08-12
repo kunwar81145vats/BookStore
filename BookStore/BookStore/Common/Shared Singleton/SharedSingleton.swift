@@ -28,8 +28,17 @@ class SharedSingleton: NSObject {
         let dialogMessage = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
         dialogMessage.addAction(UIAlertAction.init(title: "Go to Login", style: .default, handler: { action in
             
-            let obj = SignInViewController.instantiate(appStoryboard: .login)
-            vc.navigationController?.pushViewController(obj, animated: true)
+            if let signInObj = vc.navigationController?.viewControllers.first(where: { vc in
+                vc.isKind(of: SignInViewController.self)
+            })
+            {
+                vc.navigationController?.popToViewController(signInObj, animated: true)
+            }
+            else
+            {
+                let obj = SignInViewController.instantiate(appStoryboard: .login)
+                vc.navigationController?.pushViewController(obj, animated: true)
+            }
         }))
         dialogMessage.addAction(UIAlertAction.init(title: "Cancel", style: .cancel))
         vc.present(dialogMessage, animated: true, completion: nil)

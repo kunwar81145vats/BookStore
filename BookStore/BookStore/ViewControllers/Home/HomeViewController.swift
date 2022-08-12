@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var checkoutButton: UIButton!
+    @IBOutlet weak var noBooksLabel: UILabel!
 
     @IBOutlet weak var cancelSearchBtnWidthConstraint: NSLayoutConstraint!
     private let cancelBtnWidth = 90
@@ -90,6 +91,16 @@ class HomeViewController: UIViewController {
             }
             
             self.books = resp
+            if self.books.count == 0
+            {
+                self.collectionView.isHidden = true
+                self.noBooksLabel.isHidden = false
+            }
+            else
+            {
+                self.collectionView.isHidden = false
+                self.noBooksLabel.isHidden = true
+            }
             self.collectionView.reloadData()
         }
     }
@@ -124,6 +135,18 @@ class HomeViewController: UIViewController {
             }
             
             self.searchResults = resp
+            
+            if self.searchResults.count == 0
+            {
+                self.collectionView.isHidden = true
+                self.noBooksLabel.isHidden = false
+            }
+            else
+            {
+                self.collectionView.isHidden = false
+                self.noBooksLabel.isHidden = true
+            }
+            
             self.collectionView.reloadData()
         }
     }

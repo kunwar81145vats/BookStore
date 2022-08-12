@@ -10,6 +10,7 @@ import Kingfisher
 
 class FavouritesViewController: UIViewController {
 
+    @IBOutlet weak var noBooksLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var checkoutButton: UIButton!
 
@@ -43,6 +44,17 @@ class FavouritesViewController: UIViewController {
         if UserDefaults.standard.value(forKey: UserDefaultKeys.authToken.rawValue) != nil
         {
             self.getCartDetails()
+        }
+        
+        if books.count == 0
+        {
+            collectionView.isHidden = true
+            noBooksLabel.isHidden = false
+        }
+        else
+        {
+            collectionView.isHidden = false
+            noBooksLabel.isHidden = true
         }
     }
     

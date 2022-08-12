@@ -16,6 +16,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add books to cart to checkout" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqm-Am-Wca">
+                                <rect key="frame" x="107" y="424.5" width="200" height="57.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="eyP-N9-NLX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DGz-XM-rmO">
                                 <rect key="frame" x="0.0" y="44" width="414" height="728"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -274,6 +283,7 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="qqm-Am-Wca" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="1If-0W-Ofz"/>
                             <constraint firstItem="rQ3-2I-csM" firstAttribute="top" secondItem="DGz-XM-rmO" secondAttribute="bottom" constant="20" id="2kg-gL-ked"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="DGz-XM-rmO" secondAttribute="trailing" id="GwK-6u-exC"/>
                             <constraint firstItem="DGz-XM-rmO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="MaZ-79-WRy"/>
@@ -281,10 +291,12 @@
                             <constraint firstItem="rQ3-2I-csM" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leadingMargin" constant="20" id="RfN-Ep-HGq"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rQ3-2I-csM" secondAttribute="bottom" constant="20" id="ct3-5m-7cE"/>
                             <constraint firstItem="DGz-XM-rmO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="rc3-Eu-b3P"/>
+                            <constraint firstItem="qqm-Am-Wca" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" id="yXv-Zu-Oxd"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="booksCostLabel" destination="ZDJ-S4-XxD" id="G4d-Nm-d6A"/>
+                        <outlet property="checkoutButton" destination="rQ3-2I-csM" id="Q2a-5P-HXA"/>
                         <outlet property="tableView" destination="DGz-XM-rmO" id="do0-ts-W90"/>
                         <outlet property="taxesLabel" destination="zJE-pV-or0" id="kZN-A6-GHB"/>
                         <outlet property="totalCostLabel" destination="gly-tq-vp0" id="Frv-Qv-csN"/>

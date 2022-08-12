@@ -9,7 +9,9 @@ import UIKit
 
 class NotificationsViewController: UIViewController {
 
+    @IBOutlet weak var noBooksLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +22,17 @@ class NotificationsViewController: UIViewController {
         super.viewWillAppear(animated)
         self.title = "Notifications"
         self.navigationController?.isNavigationBarHidden = false
+        
+//        if books.count == 0
+//        {
+            tableView.isHidden = true
+            noBooksLabel.isHidden = false
+//        }
+//        else
+//        {
+//            collectionView.isHidden = false
+//            noBooksLabel.isHidden = true
+//        }
     }
     
 }
@@ -28,7 +41,7 @@ class NotificationsViewController: UIViewController {
 extension NotificationsViewController: UITableViewDataSource, UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

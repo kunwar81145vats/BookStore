@@ -11,12 +11,14 @@ import FirebaseAnalytics
 
 class BookDetailsViewController: UIViewController {
 
+    @IBOutlet weak var checkoutButtonWidthConstriant: NSLayoutConstraint!
     @IBOutlet weak var summaryTextView: UITextView!
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBOutlet weak var bookNameLabel: UILabel!
     @IBOutlet weak var favouriteButton: UIButton!
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var addToCartButton: UIButton!
+    @IBOutlet weak var checkoutButton: UIButton!
 
     var book: Book!
     override func viewDidLoad() {
@@ -27,6 +29,7 @@ class BookDetailsViewController: UIViewController {
         addToCartButton.layer.borderColor = addToCartButton.tintColor.cgColor
         addToCartButton.layer.borderWidth = 1.0
         addToCartButton.layer.cornerRadius = 5
+        checkoutButton.layer.cornerRadius = checkoutButton.frame.size.height/2
         
         showBookDetails()
     }
@@ -56,6 +59,23 @@ class BookDetailsViewController: UIViewController {
         {
             addToCartButton.setTitle("Add to Cart ($\(book.price ?? 0))", for: .normal)
         }
+        
+        if SharedSingleton.shared.cart?.books?.count == 0
+        {
+            checkoutButton.isHidden = true
+            checkoutButtonWidthConstriant.constant = 0
+        }
+        else if SharedSingleton.shared.cart == nil
+        {
+            checkoutButton.isHidden = true
+            checkoutButtonWidthConstriant.constant = 0
+        }
+        else
+        {
+            checkoutButton.isHidden = false
+            checkoutButtonWidthConstriant.constant = 70
+        }
+        
     }
     
     @IBAction func favouriteButtonAction(_ sender: Any) {
@@ -64,6 +84,9 @@ class BookDetailsViewController: UIViewController {
     @IBAction func backButtonAction(_ sender: Any) {
         
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func checkoutButtonAction(_ sender: Any) {
     }
     
     @IBAction func addToCartButtonAction(_ sender: Any) {

@@ -14,6 +14,7 @@ class CheckoutViewController: UIViewController {
     @IBOutlet weak var taxesLabel: UILabel!
     @IBOutlet weak var booksCostLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var checkoutButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,7 @@ class CheckoutViewController: UIViewController {
             
             SharedSingleton.shared.cart = resp
             self.tableView.reloadData()
+            self.updatePage()
         }
     }
     
@@ -76,7 +78,14 @@ class CheckoutViewController: UIViewController {
             }
             
             SharedSingleton.shared.cart = resp
+            
+            if SharedSingleton.shared.cart?.books?.count == 0
+            {
+                self.tableView.isHidden = true
+                self.checkoutButton.isHidden = true
+            }
             self.tableView.reloadData()
+            self.updatePage()
         }
     }
     

@@ -19,6 +19,11 @@ class SignUpViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     @IBAction func skipButtonAction(_ sender: Any) {
         
         let obj = HomeTabBarViewController.instantiate(appStoryboard: .home)

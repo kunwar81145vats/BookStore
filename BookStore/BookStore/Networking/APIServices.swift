@@ -65,8 +65,8 @@ extension BSServices: TargetType {
             return Api.cart
         case .addBookToCart(let bookId, let count):
             return Api.cart + "/\(bookId)/\(count)"
-        case .removeBookFromCart(_):
-            return Api.cart
+        case .removeBookFromCart(let bookId):
+            return Api.cart + "/\(bookId)"
         case .updateBookinCart(let bookId, let count):
             return Api.cart + "/\(bookId)/\(count)"
         }
