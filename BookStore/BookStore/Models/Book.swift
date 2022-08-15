@@ -9,14 +9,14 @@ import Foundation
 
 struct Book: Codable {
 
-    let bookId: Int!
-    let title: String!
-    let category: String?
-    let author: String!
-    let price: Double!
-    let summary: String!
+    var bookId: Int!
+    var title: String!
+    var category: String?
+    var author: String!
+    var price: Double!
+    var summary: String!
     var quantity: Int!
-    let coverImageURL: String!
-    let coordinateX: String!
-    let coordinateY: String!
+    var coverImageURL: String!
+    var coordinateX: String!
+    var coordinateY: String!
 }

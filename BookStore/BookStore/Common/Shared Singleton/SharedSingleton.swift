@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SharedSingleton: NSObject {
 
@@ -57,5 +58,105 @@ class SharedSingleton: NSObject {
     func deleteAuthToken()
     {
         UserDefaults.standard.removeObject(forKey: UserDefaultKeys.authToken.rawValue)
+    }
+    
+    //Save book to favourites (Core Data)
+    func addToFavourite(book: Book)
+    {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+        
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Favourites", in: managedContext)!
+        
+        let favouriteBook = Favourites(entity: entity, insertInto: managedContext)
+        
+        favouriteBook.bookId = Int16(book.bookId)
+        favouriteBook.coordinateY = book.coordinateY
+        favouriteBook.coordinateX = book.coordinateX
+        favouriteBook.quantity = Int16(book.quantity)
+        favouriteBook.coverImageURL = book.coverImageURL
+        favouriteBook.title = book.title
+        favouriteBook.author = book.author
+        favouriteBook.category = book.category
+        favouriteBook.price = book.price
+        favouriteBook.summary = book.summary
+                
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    //Delete book from favourites (Core Data)
+    func deleteFromFavourite(id: Int)
+    {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+        
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+          
+        let fetchRequest = NSFetchRequest<Favourites>(entityName: "Favourites")
+        let predicate = NSPredicate(format: "bookId = %@", id)
+        fetchRequest.predicate = predicate
+        
+        do {
+            let books = try managedContext.fetch(fetchRequest)
+            if let book = books.first
+            {
+                managedContext.delete(book)
+                try managedContext.save()
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            
+        }
+    }
+    
+    //Fetch favourites books (Core Data)
+    func fetchFavourites() -> [Book]?
+    {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+        
+            return nil
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+          
+        let fetchRequest = NSFetchRequest<Favourites>(entityName: "Favourites")
+        
+        do {
+            let favourites = try managedContext.fetch(fetchRequest)
+            
+            var books: [Book] = []
+            
+            for obj in favourites
+            {
+                var bookObj: Book = Book()
+                
+                bookObj.bookId = Int(obj.bookId)
+                bookObj.coordinateY = obj.coordinateY
+                bookObj.coordinateX = obj.coordinateX
+                bookObj.quantity = Int(obj.quantity)
+                bookObj.coverImageURL = obj.coverImageURL
+                bookObj.title = obj.title
+                bookObj.author = obj.author
+                bookObj.category = obj.category
+                bookObj.price = obj.price
+                bookObj.summary = obj.summary
+                
+                books.append(bookObj)
+            }
+            
+            return books
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            return nil
+        }
     }
 }
