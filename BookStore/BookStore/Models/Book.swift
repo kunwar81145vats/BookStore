@@ -19,4 +19,5 @@ struct Book: Codable {
     var coverImageURL: String!
     var coordinateX: String!
     var coordinateY: String!
+    var isFav: Bool? = false
 }

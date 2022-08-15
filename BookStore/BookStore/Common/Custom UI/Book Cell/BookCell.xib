@@ -39,6 +39,13 @@
                         <color key="textColor" red="0.92156862750000001" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyHeart" translatesAutoresizingMaskIntoConstraints="NO" id="Ulz-CQ-b8d">
+                        <rect key="frame" x="70" y="0.0" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="HLB-V6-Qdh"/>
+                            <constraint firstAttribute="width" constant="30" id="uch-0Y-YLl"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -55,12 +62,15 @@
                 <constraint firstItem="sSk-Yf-iLf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="if0-gv-bqA"/>
                 <constraint firstItem="bdh-GL-oBC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lXR-jf-rGx"/>
                 <constraint firstItem="Ijw-eF-3X3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pZV-Hw-u8h"/>
+                <constraint firstAttribute="trailing" secondItem="Ulz-CQ-b8d" secondAttribute="trailing" id="q6D-43-3aB"/>
                 <constraint firstItem="N0V-NP-zhp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="z52-fL-vYU"/>
+                <constraint firstItem="Ulz-CQ-b8d" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zDv-DG-ivX"/>
                 <constraint firstItem="Ijw-eF-3X3" firstAttribute="top" secondItem="sSk-Yf-iLf" secondAttribute="bottom" id="zXz-mm-UXK"/>
             </constraints>
             <size key="customSize" width="245" height="311"/>
             <connections>
                 <outlet property="authorLabel" destination="bdh-GL-oBC" id="odR-aU-TnS"/>
+                <outlet property="favImgView" destination="Ulz-CQ-b8d" id="2pq-Su-QEe"/>
                 <outlet property="imageView" destination="sSk-Yf-iLf" id="t0v-yl-OpZ"/>
                 <outlet property="nameLabel" destination="Ijw-eF-3X3" id="eqF-1E-vfW"/>
                 <outlet property="priceLabel" destination="N0V-NP-zhp" id="NVf-Y3-eXe"/>
@@ -70,6 +80,7 @@
     </objects>
     <resources>
         <image name="bookPlaceholder" width="150" height="150"/>
+        <image name="emptyHeart" width="24" height="24"/>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

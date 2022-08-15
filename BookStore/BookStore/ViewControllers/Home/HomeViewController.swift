@@ -42,6 +42,7 @@ class HomeViewController: UIViewController {
         searchTextField.delegate = self
         checkoutButton.layer.cornerRadius = checkoutButton.frame.size.height/2
         
+        setupLongGestureRecognizerOnCollection()
         getAllBooks()
     }
 
@@ -54,7 +55,42 @@ class HomeViewController: UIViewController {
         if UserDefaults.standard.value(forKey: UserDefaultKeys.authToken.rawValue) != nil
         {
             self.getCartDetails()
+            
+            if self.books.count != 0
+            {
+                self.updateFavBooks()
+            }
         }
+    }
+    
+    private func setupLongGestureRecognizerOnCollection() {
+          let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+             lpgr.minimumPressDuration = 0.5
+             lpgr.delaysTouchesBegan = true
+          self.collectionView.addGestureRecognizer(lpgr)
+    }
+    
+    @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
+         guard gestureReconizer.state != .began else { return }
+         let point = gestureReconizer.location(in: self.collectionView)
+         let indexPath = self.collectionView.indexPathForItem(at: point)
+         if let index = indexPath{
+               print(index.row)
+             self.collectionView.reloadItems(at: [index])
+             
+             if books[index.row].isFav ?? false
+             {
+                 SharedSingleton.shared.deleteFromFavourite(id: books[index.row].bookId)
+             }
+             else
+             {
+                 books[index.row].isFav = true
+                 SharedSingleton.shared.addToFavourite(book: books[index.row])
+             }
+         }
+         else{
+               print("Could not find index path")
+         }
     }
     
     @IBAction func checkoutButtonAction(_ sender: Any) {
@@ -79,12 +115,33 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func updateFavBooks()
+    {
+        let favBooks = SharedSingleton.shared.fetchFavourites()
+        
+        for (ind, obj) in (favBooks ?? []).enumerated()
+        {
+            if books.contains(where: { book in
+                book.bookId == obj.bookId
+            })
+            {
+                books[ind].isFav = true
+            }
+            else
+            {
+                books[ind].isFav = false
+            }
+        }
+        
+        self.collectionView.reloadData()
+    }
+    
     func getAllBooks()
     {
         let hud = JGProgressHUD()
         hud.textLabel.text = ""
         hud.show(in: self.view)
-        APIHelper.shared.getBooks { response, error in
+        APIHelper.shared.getBooks { [self] response, error in
             
             hud.dismiss()
             guard let resp = response, error == nil else {
@@ -107,6 +164,8 @@ class HomeViewController: UIViewController {
                 self.collectionView.isHidden = false
                 self.noBooksLabel.isHidden = true
             }
+            
+            self.updateFavBooks()
             self.collectionView.reloadData()
         }
     }
@@ -210,6 +269,14 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         cell.authorLabel.text = book.author
         cell.priceLabel.text = "$\(book.price ?? 0)"
         
+        if book.isFav ?? false
+        {
+            cell.favImgView.image = UIImage(named: "filledHeart")
+        }
+        else
+        {
+            cell.favImgView.image = UIImage(named: "emptyHeart")
+        }
         return cell
     }
     

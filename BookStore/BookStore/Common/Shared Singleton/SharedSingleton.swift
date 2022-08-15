@@ -33,12 +33,12 @@ class SharedSingleton: NSObject {
                 vc.isKind(of: SignInViewController.self)
             })
             {
-                vc.navigationController?.popToViewController(signInObj, animated: true)
+                vc.view.window?.rootViewController = UINavigationController(rootViewController: signInObj)
             }
             else
             {
                 let obj = SignInViewController.instantiate(appStoryboard: .login)
-                vc.navigationController?.pushViewController(obj, animated: true)
+                vc.view.window?.rootViewController = UINavigationController(rootViewController: obj)
             }
         }))
         dialogMessage.addAction(UIAlertAction.init(title: "Cancel", style: .cancel))
@@ -102,7 +102,7 @@ class SharedSingleton: NSObject {
         let managedContext = appDelegate.persistentContainer.viewContext
           
         let fetchRequest = NSFetchRequest<Favourites>(entityName: "Favourites")
-        let predicate = NSPredicate(format: "bookId = %@", id)
+        let predicate = NSPredicate(format: "bookId = %d", Int16(id))
         fetchRequest.predicate = predicate
         
         do {

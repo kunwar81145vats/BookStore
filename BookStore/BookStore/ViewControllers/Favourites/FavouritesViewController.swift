@@ -34,6 +34,7 @@ class FavouritesViewController: UIViewController {
         checkoutButton.isHidden = true
         
         checkoutButton.layer.cornerRadius = checkoutButton.frame.size.height/2
+        setupLongGestureRecognizerOnCollection()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +47,8 @@ class FavouritesViewController: UIViewController {
             self.getCartDetails()
         }
         
+        books = SharedSingleton.shared.fetchFavourites() ?? []
+        
         if books.count == 0
         {
             collectionView.isHidden = true
@@ -56,6 +59,29 @@ class FavouritesViewController: UIViewController {
             collectionView.isHidden = false
             noBooksLabel.isHidden = true
         }
+    }
+    
+    private func setupLongGestureRecognizerOnCollection() {
+          let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+             lpgr.minimumPressDuration = 0.5
+             lpgr.delaysTouchesBegan = true
+          self.collectionView.addGestureRecognizer(lpgr)
+    }
+    
+    @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
+         guard gestureReconizer.state != .began else { return }
+         let point = gestureReconizer.location(in: self.collectionView)
+         let indexPath = self.collectionView.indexPathForItem(at: point)
+         if let index = indexPath{
+               print(index.row)
+             
+             SharedSingleton.shared.deleteFromFavourite(id: books[index.row].bookId)
+             books = SharedSingleton.shared.fetchFavourites() ?? []
+             self.collectionView.reloadItems(at: [index])
+         }
+         else{
+               print("Could not find index path")
+         }
     }
     
     @IBAction func checkoutButtonAction(_ sender: Any) {
@@ -111,6 +137,7 @@ extension FavouritesViewController: UICollectionViewDataSource, UICollectionView
         cell.nameLabel.text = book.title
         cell.authorLabel.text = book.author
         cell.priceLabel.text = "$\(book.price ?? 0)"
+        cell.favImgView.image = UIImage(named: "filledHeart")
         
         return cell
     }

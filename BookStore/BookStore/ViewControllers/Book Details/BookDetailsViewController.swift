@@ -77,9 +77,31 @@ class BookDetailsViewController: UIViewController {
             checkoutButtonWidthConstriant.constant = 70
         }
         
+        if book.isFav ?? false
+        {
+            favouriteButton.setImage(UIImage(named: "filledHeart"), for: .normal)
+        }
+        else
+        {
+            favouriteButton.setImage(UIImage(named: "emptyHeart"), for: .normal)
+        }
+        
     }
     
     @IBAction func favouriteButtonAction(_ sender: Any) {
+        
+        if book.isFav ?? false
+        {
+            book.isFav = true
+            SharedSingleton.shared.addToFavourite(book: book)
+        }
+        else
+        {
+            book.isFav = true
+            SharedSingleton.shared.deleteFromFavourite(id: book.bookId)
+        }
+        
+        showBookDetails()
     }
     
     @IBAction func backButtonAction(_ sender: Any) {
