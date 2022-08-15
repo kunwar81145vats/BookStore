@@ -92,13 +92,14 @@ class BookDetailsViewController: UIViewController {
         
         if book.isFav ?? false
         {
-            book.isFav = true
-            SharedSingleton.shared.addToFavourite(book: book)
+            book.isFav = false
+            SharedSingleton.shared.deleteFromFavourite(id: book.bookId)
+
         }
         else
         {
             book.isFav = true
-            SharedSingleton.shared.deleteFromFavourite(id: book.bookId)
+            SharedSingleton.shared.addToFavourite(book: book)
         }
         
         showBookDetails()

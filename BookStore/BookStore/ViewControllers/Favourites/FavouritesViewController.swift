@@ -76,7 +76,7 @@ class FavouritesViewController: UIViewController {
                print(index.row)
              
              SharedSingleton.shared.deleteFromFavourite(id: books[index.row].bookId)
-             books = SharedSingleton.shared.fetchFavourites() ?? []
+             books.remove(at: index.row)
              self.collectionView.reloadItems(at: [index])
          }
          else{

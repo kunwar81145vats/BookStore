@@ -80,6 +80,7 @@ class HomeViewController: UIViewController {
              
              if books[index.row].isFav ?? false
              {
+                 books[index.row].isFav = false
                  SharedSingleton.shared.deleteFromFavourite(id: books[index.row].bookId)
              }
              else
@@ -87,6 +88,8 @@ class HomeViewController: UIViewController {
                  books[index.row].isFav = true
                  SharedSingleton.shared.addToFavourite(book: books[index.row])
              }
+             
+             self.collectionView.reloadData()
          }
          else{
                print("Could not find index path")
@@ -119,13 +122,20 @@ class HomeViewController: UIViewController {
     {
         let favBooks = SharedSingleton.shared.fetchFavourites()
         
-        for (ind, obj) in (favBooks ?? []).enumerated()
+        for (ind, obj) in books.enumerated()
         {
-            if books.contains(where: { book in
-                book.bookId == obj.bookId
-            })
+            if let favs = favBooks
             {
-                books[ind].isFav = true
+                if favs.contains(where: { book in
+                    book.bookId == obj.bookId
+                })
+                {
+                    books[ind].isFav = true
+                }
+                else
+                {
+                    books[ind].isFav = false
+                }
             }
             else
             {
