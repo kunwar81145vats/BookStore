@@ -111,6 +111,9 @@ class BookDetailsViewController: UIViewController {
     }
     
     @IBAction func checkoutButtonAction(_ sender: Any) {
+        
+        let obj = CheckoutViewController.instantiate(appStoryboard: .checkout)
+        self.navigationController?.pushViewController(obj, animated: true)
     }
     
     @IBAction func addToCartButtonAction(_ sender: Any) {
