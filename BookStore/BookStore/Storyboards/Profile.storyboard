@@ -238,6 +238,9 @@
                             <constraint firstItem="LTG-xJ-L1a" firstAttribute="top" secondItem="lMO-TE-Tov" secondAttribute="top" id="l6Q-sv-aqi"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="LTG-xJ-L1a" id="imc-kv-5fj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xG4-wg-PBE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

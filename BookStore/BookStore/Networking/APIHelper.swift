@@ -115,6 +115,7 @@ class APIHelper {
                 let resp = response.response
                 if resp?.statusCode == 404
                 {
+                    SharedSingleton.shared.deleteAuthToken()
                     completion(nil, ErrorModel("404", "Token expired"))
                 }
                 
@@ -231,6 +232,7 @@ class APIHelper {
                 let resp = response.response
                 if resp?.statusCode == 404
                 {
+                    SharedSingleton.shared.deleteAuthToken()
                     completion(nil, ErrorModel("404", "Token expired"))
                 }
                 
@@ -264,6 +266,7 @@ class APIHelper {
                 let resp = response.response
                 if resp?.statusCode == 404
                 {
+                    SharedSingleton.shared.deleteAuthToken()
                     completion(nil, ErrorModel("404", "Token expired"))
                 }
                 
@@ -298,6 +301,7 @@ class APIHelper {
                 let resp = response.response
                 if resp?.statusCode == 404
                 {
+                    SharedSingleton.shared.deleteAuthToken()
                     completion(nil, ErrorModel("404", "Token expired"))
                 }
                 
@@ -331,6 +335,7 @@ class APIHelper {
                 let resp = response.response
                 if resp?.statusCode == 404
                 {
+                    SharedSingleton.shared.deleteAuthToken()
                     completion(nil, ErrorModel("404", "Token expired"))
                 }
                 
@@ -364,6 +369,7 @@ class APIHelper {
                 let resp = response.response
                 if resp?.statusCode == 404
                 {
+                    SharedSingleton.shared.deleteAuthToken()
                     completion(nil, ErrorModel("404", "Token expired"))
                 }
                 
@@ -397,6 +403,7 @@ class APIHelper {
                 let resp = response.response
                 if resp?.statusCode == 404
                 {
+                    SharedSingleton.shared.deleteAuthToken()
                     completion(nil, ErrorModel("404", "Token expired"))
                 }
                 
