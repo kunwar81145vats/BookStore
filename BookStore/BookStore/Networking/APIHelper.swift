@@ -150,22 +150,21 @@ class APIHelper {
             
             switch result {
             case .success(let response):
-
+                
                 do {
                     let userObj = try JSONDecoder().decode(Book.self, from: response.data)
-                    let response = response.response
-                    self.saveAuthToken(response: response)
+
                     completion(userObj, nil)
                 }
                 catch let err
                 {
-                    completion(nil, ErrorModel.init("500", err.localizedDescription))
+                    completion(nil, ErrorModel("500", err.localizedDescription))
                 }
 
                 break
             case .failure(let error):
                 print(error)
-                completion(nil, ErrorModel.init("500", error.localizedDescription))
+                completion(nil, ErrorModel("500", error.localizedDescription))
             }
         }
     }
@@ -180,6 +179,12 @@ class APIHelper {
             switch result {
             case .success(let response):
 
+                let resp = response.response
+                if resp?.statusCode == 404
+                {
+                    completion(nil, ErrorModel("404", "Token expired"))
+                }
+                
                 do {
                     let Obj = try JSONDecoder().decode(Cart.self, from: response.data)
                     completion(Obj, nil)
@@ -206,6 +211,12 @@ class APIHelper {
             
             switch result {
             case .success(let response):
+                
+                let resp = response.response
+                if resp?.statusCode == 404
+                {
+                    completion(nil, ErrorModel("404", "Token expired"))
+                }
                 
                 do {
                     let Obj = try JSONDecoder().decode(Cart.self, from: response.data)
@@ -235,6 +246,12 @@ class APIHelper {
             switch result {
             case .success(let response):
                 
+                let resp = response.response
+                if resp?.statusCode == 404
+                {
+                    completion(nil, ErrorModel("404", "Token expired"))
+                }
+                
                 do {
                     let Obj = try JSONDecoder().decode(Cart.self, from: response.data)
                     completion(Obj, nil)
@@ -261,6 +278,12 @@ class APIHelper {
             
             switch result {
             case .success(let response):
+                
+                let resp = response.response
+                if resp?.statusCode == 404
+                {
+                    completion(nil, ErrorModel("404", "Token expired"))
+                }
                 
                 do {
                     let Obj = try JSONDecoder().decode(Cart.self, from: response.data)

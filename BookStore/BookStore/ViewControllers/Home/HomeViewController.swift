@@ -187,7 +187,14 @@ class HomeViewController: UIViewController {
                 
                 if let err = error
                 {
-                    SharedSingleton.shared.showErrorDialog(self, message: err.message)
+                    if err.status == "404"
+                    {
+                        SharedSingleton.shared.goToLoginDialog(self)
+                    }
+                    else
+                    {
+                        SharedSingleton.shared.showErrorDialog(self, message: err.message)
+                    }
                 }
                 return
             }

@@ -24,6 +24,27 @@ class SharedSingleton: NSObject {
         vc.present(dialogMessage, animated: true, completion: nil)
     }
     
+    func goToLoginDialog(_ vc: UIViewController, message: String? = "Your login has expired")
+    {
+        let dialogMessage = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { action in
+            
+            if let signInObj = vc.navigationController?.viewControllers.first(where: { vc in
+                vc.isKind(of: SignInViewController.self)
+            })
+            {
+                vc.view.window?.rootViewController = UINavigationController(rootViewController: signInObj)
+            }
+            else
+            {
+                let obj = SignInViewController.instantiate(appStoryboard: .login)
+                vc.view.window?.rootViewController = UINavigationController(rootViewController: obj)
+            }
+        }))
+        dialogMessage.addAction(UIAlertAction.init(title: "Cancel", style: .cancel))
+        vc.present(dialogMessage, animated: true, completion: nil)
+    }
+    
     func showLoginDialog(_ vc: UIViewController, message: String? = "Please login")
     {
         let dialogMessage = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
