@@ -24,6 +24,13 @@ class SharedSingleton: NSObject {
         vc.present(dialogMessage, animated: true, completion: nil)
     }
     
+    func showSuccessDialog(_ vc: UIViewController, message: String? = "Successful")
+    {
+        let dialogMessage = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
+        dialogMessage.addAction(UIAlertAction.init(title: "OK", style: .default))
+        vc.present(dialogMessage, animated: true, completion: nil)
+    }
+    
     func goToLoginDialog(_ vc: UIViewController, message: String? = "Your login has expired")
     {
         let dialogMessage = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)

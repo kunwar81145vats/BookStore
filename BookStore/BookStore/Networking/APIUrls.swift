@@ -16,7 +16,9 @@ struct Api {
 
     static let signUp = "/api/User/signup"
     static let signIn = "/api/User/signin"
+    static let updateProfile = "/api/User"
     static let getBooks = "/api/Book"
     static let searchBooks = "/api/Book/search"
     static let cart = "/api/Cart"
+    static let orders = "/api​/Order"
 }

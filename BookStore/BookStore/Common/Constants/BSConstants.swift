@@ -17,4 +17,11 @@ enum AppStoryboard: String {
 
 enum UserDefaultKeys: String {
     case authToken = "Authorization"
+    case email = "Email_address"
+    case name = "Full_name"
+    case address = "User_address"
+    case city = "User_city"
+    case state = "User_state"
+    case phone = "User_phone"
+    case postal = "postal_code"
 }

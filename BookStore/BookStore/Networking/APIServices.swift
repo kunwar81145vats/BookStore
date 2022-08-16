@@ -19,6 +19,7 @@ enum BSServices {
     case removeBookFromCart(_ bookId: Int)
     case addBookToCart(_ bookId: Int, _ count: Int)
     case updateBookinCart(_ bookId: Int, _ count: Int)
+    case updateProfile(_ param: [String: String])
 }
 
 
@@ -30,7 +31,7 @@ extension BSServices: TargetType {
         case .getBooks, .searchBooks, .bookDetails, .getCart:
             return .get
             
-        case .updateBookinCart(_, _):
+        case .updateBookinCart(_, _), .updateProfile(_):
             return .put
             
         case .removeBookFromCart(_):
@@ -69,6 +70,8 @@ extension BSServices: TargetType {
             return Api.cart + "/\(bookId)"
         case .updateBookinCart(let bookId, let count):
             return Api.cart + "/\(bookId)/\(count)"
+        case .updateProfile(_):
+            return Api.updateProfile
         }
     }
     
@@ -92,18 +95,19 @@ extension BSServices: TargetType {
             return .requestParameters(parameters: [:], encoding: URLEncoding.default)
         case .updateBookinCart(_, _):
             return .requestParameters(parameters: [:], encoding: URLEncoding.default)
+        case .updateProfile(let param):
+            return .requestParameters(parameters: param, encoding: JSONEncoding.default)
         }
     }
     
     var headers: [String: String]? {
         
         switch self {
-            
-        case .removeBookFromCart(_), .addBookToCart(_,_), .updateBookinCart(_,_), .getCart:
-            return ["Content-type": "application/json",
-                    "Authorization": "Bearer " + SharedSingleton.shared.getAuthToken()]
-        default:
-            return ["Content-type": "application/json"]
+            case .removeBookFromCart(_), .addBookToCart(_,_), .updateBookinCart(_,_), .getCart, .updateProfile(_):
+                return ["Content-type" : "application/json",
+                        "Authorization": "Bearer " + SharedSingleton.shared.getAuthToken()]
+            default:
+                return ["Content-type": "application/json"]
         }
     }
 }

@@ -24,6 +24,18 @@ class APIHelper {
         }
     }
     
+    func saveUserDetails(user: User)
+    {
+        UserDefaults.standard.set(user.fullName, forKey: UserDefaultKeys.name.rawValue)
+        UserDefaults.standard.set(user.email, forKey: UserDefaultKeys.email.rawValue)
+        UserDefaults.standard.set(user.phoneNumber, forKey: UserDefaultKeys.phone.rawValue)
+        UserDefaults.standard.set(user.address, forKey: UserDefaultKeys.address.rawValue)
+        UserDefaults.standard.set(user.city, forKey: UserDefaultKeys.city.rawValue)
+        UserDefaults.standard.set(user.state, forKey: UserDefaultKeys.state.rawValue)
+        UserDefaults.standard.set(user.postalCode, forKey: UserDefaultKeys.postal.rawValue)
+
+    }
+    
     //MARK: - Sign up APi
     //API method to register a new user
     func signUp(_ param: [String: String], completion: @escaping(_ response: User?,_ error: ErrorModel?) -> Void )
@@ -38,6 +50,7 @@ class APIHelper {
                     let userObj = try JSONDecoder().decode(User.self, from: response.data)
                     let response = response.response
                     self.saveAuthToken(response: response)
+                    self.saveUserDetails(user: userObj)
                     completion(userObj, nil)
                 }
                 catch let err
@@ -68,6 +81,35 @@ class APIHelper {
 
                     let response = response.response
                     self.saveAuthToken(response: response)
+                    self.saveUserDetails(user: userObj)
+                    completion(userObj, nil)
+                }
+                catch let err
+                {
+                    completion(nil, ErrorModel.init("500", err.localizedDescription))
+                }
+
+                break
+            case .failure(let error):
+                print(error)
+                completion(nil, ErrorModel.init("500", error.localizedDescription))
+            }
+        }
+    }
+    
+    //MARK: - Update Profile APi
+    //API method to update user Profile
+    func updateProfile(_ param: [String: String], completion: @escaping(_ response: User?,_ error: ErrorModel?) -> Void )
+    {
+        let provider = MoyaProvider<BSServices>()
+        provider.request(.signUp(param)) { result in
+            
+            switch result {
+            case .success(let response):
+                
+                do {
+                    let userObj = try JSONDecoder().decode(User.self, from: response.data)
+                    self.saveUserDetails(user: userObj)
                     completion(userObj, nil)
                 }
                 catch let err
@@ -95,8 +137,6 @@ class APIHelper {
                 
                 do {
                     let userObj = try JSONDecoder().decode([Book].self, from: response.data)
-                    let response = response.response
-                    self.saveAuthToken(response: response)
                     completion(userObj, nil)
                 }
                 catch let err
@@ -124,8 +164,6 @@ class APIHelper {
                 
                 do {
                     let userObj = try JSONDecoder().decode([Book].self, from: response.data)
-                    let response = response.response
-                    self.saveAuthToken(response: response)
                     completion(userObj, nil)
                 }
                 catch let err

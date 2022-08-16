@@ -27,7 +27,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eSd-km-DNT">
                                 <rect key="frame" x="0.0" y="764" width="414" height="98"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhK-mx-3Vf">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhK-mx-3Vf">
                                         <rect key="frame" x="28" y="20" width="358" height="50"/>
                                         <color key="backgroundColor" red="0.92156862750000001" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -38,6 +38,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="SAVE">
                                             <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="saveButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="t0k-Lh-UPz"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -88,7 +91,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJa-hr-3Bk">
                                 <rect key="frame" x="0.0" y="764" width="414" height="98"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mz4-Fo-H2G">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mz4-Fo-H2G">
                                         <rect key="frame" x="28" y="20" width="358" height="50"/>
                                         <color key="backgroundColor" red="0.92156862750000001" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -99,6 +102,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="SAVE">
                                             <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="saveButtonAction:" destination="ynF-CD-WQ8" eventType="touchUpInside" id="fj9-2F-rnR"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>

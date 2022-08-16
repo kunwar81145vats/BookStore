@@ -70,6 +70,19 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate
             self.tabBarController?.tabBar.isHidden = true
             let obj = OrdersViewController.instantiate(appStoryboard: .profile)
             self.navigationController?.pushViewController(obj, animated: true)
+        case 3:
+            SharedSingleton.shared.deleteAuthToken()
+            if let signInObj = self.navigationController?.viewControllers.first(where: { vc in
+                vc.isKind(of: SignInViewController.self)
+            })
+            {
+                self.view.window?.rootViewController = UINavigationController(rootViewController: signInObj)
+            }
+            else
+            {
+                let obj = SignInViewController.instantiate(appStoryboard: .login)
+                self.view.window?.rootViewController = UINavigationController(rootViewController: obj)
+            }
         default:
             break
         }

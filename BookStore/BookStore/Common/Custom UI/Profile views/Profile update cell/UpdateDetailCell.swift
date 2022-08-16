@@ -9,6 +9,7 @@ import UIKit
 
 class UpdateDetailCell: UITableViewCell {
 
+    @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var nameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
