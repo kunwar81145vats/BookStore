@@ -46,6 +46,3 @@ Order Placed page
 
 Orders page
 <img src='/Screenshots/orders.png' width='200'>
-
-Order placed page
-<img src='/Screenshots/success.png' width='200'>
