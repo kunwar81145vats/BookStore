@@ -27,7 +27,7 @@ Store Locations page
 <img src='/Screenshots/storeLocations.png' width='200'>
 
 Favourites page
-<img src='/Screenshots/facourites.png' width='200'>
+<img src='/Screenshots/favourites.png' width='200'>
 
 Notifications page
 <img src='/Screenshots/notifications.png' width='200'>
