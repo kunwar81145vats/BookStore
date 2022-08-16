@@ -75,18 +75,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate
                 cell.orderIdLabel.text = "Order #\(order.orderId ?? 0)"
                 cell.quantityLabel.text = "\(order.listBooks.count)"
                 
-                let dateFormatter = DateFormatter()
-                dateFormatter.locale = Locale.current
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-                if let date = dateFormatter.date(from:order.date)
-                {
-                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-                    cell.dateLabel.text = dateFormatter.string(from: date)
-                }
-                else
-                {
-                    cell.dateLabel.text = order.date
-                }
+                cell.dateLabel.text = String(order.date.prefix(10))
             }
             
             return cell

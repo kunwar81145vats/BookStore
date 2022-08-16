@@ -47,6 +47,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as? ProfileCell {
             
+            cell.selectionStyle = .none
             cell.nameLabel.text = textArr[indexPath.row]
             
             return cell
