@@ -51,11 +51,18 @@ class UpdateProfileViewController: UIViewController {
         APIHelper.shared.updateProfile(param) { response, error in
             
             hud.dismiss()
-            guard response != nil, error == nil else
-            {
+            guard response != nil, error == nil else {
+                
                 if let err = error
                 {
-                    SharedSingleton.shared.showErrorDialog(self, message: err.message)
+                    if err.status == "404"
+                    {
+                        SharedSingleton.shared.goToLoginDialog(self)
+                    }
+                    else
+                    {
+                        SharedSingleton.shared.showErrorDialog(self, message: err.message)
+                    }
                 }
                 return
             }

@@ -33,9 +33,45 @@ class CheckoutViewController: UIViewController {
     
     @IBAction func checkoutButtonAction(_ sender: Any) {
         
-        let obj = SuccessViewController.instantiate(appStoryboard: .checkout)
-        obj.modalPresentationStyle = .overCurrentContext
-        present(obj, animated: true, completion: nil)
+        if let books = SharedSingleton.shared.cart?.books
+        {
+            var booksParam: [[String: Int]] = []
+            
+            for obj in books
+            {
+                booksParam.append(["bookId": obj.bookId, "quantity": obj.quantity])
+            }
+            
+            let param: [String: Any] = ["listBooks": booksParam]
+            
+            let hud = JGProgressHUD()
+            hud.textLabel.text = ""
+            hud.show(in: self.view)
+            
+            APIHelper.shared.placeNewOrder(param) { response, error in
+                
+                hud.dismiss()
+                guard response != nil, error == nil else {
+                    
+                    if let err = error
+                    {
+                        if err.status == "404"
+                        {
+                            SharedSingleton.shared.goToLoginDialog(self)
+                        }
+                        else
+                        {
+                            SharedSingleton.shared.showErrorDialog(self, message: err.message)
+                        }
+                    }
+                    return
+                }
+                
+                let obj = SuccessViewController.instantiate(appStoryboard: .checkout)
+                obj.modalPresentationStyle = .overCurrentContext
+                self.present(obj, animated: true, completion: nil)
+            }
+        }
     }
     
     func updatePage()

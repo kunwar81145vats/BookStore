@@ -102,10 +102,21 @@ class APIHelper {
     func updateProfile(_ param: [String: String], completion: @escaping(_ response: User?,_ error: ErrorModel?) -> Void )
     {
         let provider = MoyaProvider<BSServices>()
-        provider.request(.signUp(param)) { result in
+        provider.request(.updateProfile(param)) { result in
             
             switch result {
             case .success(let response):
+                
+                let object = try? JSONSerialization.jsonObject(
+                    with: response.data,
+                    options: []
+                )
+                
+                let resp = response.response
+                if resp?.statusCode == 404
+                {
+                    completion(nil, ErrorModel("404", "Token expired"))
+                }
                 
                 do {
                     let userObj = try JSONDecoder().decode(User.self, from: response.data)
@@ -340,4 +351,69 @@ class APIHelper {
         }
     }
     
+    //MARK: - Place New Order
+    //API method to create new order
+    func placeNewOrder(_ param: [String: Any], completion: @escaping(_ response: Order?,_ error: ErrorModel?) -> Void )
+    {
+        let provider = MoyaProvider<BSServices>()
+        provider.request(.placeOrder(param)) { result in
+            
+            switch result {
+            case .success(let response):
+                
+                let resp = response.response
+                if resp?.statusCode == 404
+                {
+                    completion(nil, ErrorModel("404", "Token expired"))
+                }
+                
+                do {
+                    let Obj = try JSONDecoder().decode(Order.self, from: response.data)
+                    completion(Obj, nil)
+                }
+                catch let err
+                {
+                    completion(nil, ErrorModel.init("500", err.localizedDescription))
+                }
+
+                break
+            case .failure(let error):
+                print(error)
+                completion(nil, ErrorModel.init("500", error.localizedDescription))
+            }
+        }
+    }
+    
+    //MARK: - Get Order
+    //API method to create new order
+    func getOrders(completion: @escaping(_ response: [Order]?,_ error: ErrorModel?) -> Void )
+    {
+        let provider = MoyaProvider<BSServices>()
+        provider.request(.getOrders) { result in
+            
+            switch result {
+            case .success(let response):
+                
+                let resp = response.response
+                if resp?.statusCode == 404
+                {
+                    completion(nil, ErrorModel("404", "Token expired"))
+                }
+                
+                do {
+                    let Obj = try JSONDecoder().decode([Order].self, from: response.data)
+                    completion(Obj, nil)
+                }
+                catch let err
+                {
+                    completion(nil, ErrorModel.init("500", err.localizedDescription))
+                }
+
+                break
+            case .failure(let error):
+                print(error)
+                completion(nil, ErrorModel.init("500", error.localizedDescription))
+            }
+        }
+    }
 }

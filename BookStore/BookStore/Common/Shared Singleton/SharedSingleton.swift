@@ -48,7 +48,6 @@ class SharedSingleton: NSObject {
                 vc.view.window?.rootViewController = UINavigationController(rootViewController: obj)
             }
         }))
-        dialogMessage.addAction(UIAlertAction.init(title: "Cancel", style: .cancel))
         vc.present(dialogMessage, animated: true, completion: nil)
     }
     

@@ -9,4 +9,9 @@ import UIKit
 
 class Order: Codable {
 
+    let orderId: Int!
+    let owner: User!
+    let listBooks: [Book]!
+    let totalPrice: Double!
+    let date: String!
 }

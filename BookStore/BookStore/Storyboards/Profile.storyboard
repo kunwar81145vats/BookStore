@@ -216,6 +216,12 @@
                                                 <constraint firstItem="b41-Ph-0sD" firstAttribute="top" secondItem="WGn-yA-HBK" secondAttribute="bottom" constant="20" id="xEF-U6-A7F"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="costLabel" destination="jI8-dM-Xme" id="BDt-GG-IDj"/>
+                                            <outlet property="dateLabel" destination="hB5-DF-eQF" id="w1I-1r-1ft"/>
+                                            <outlet property="orderIdLabel" destination="WGn-yA-HBK" id="4R8-WO-YBZ"/>
+                                            <outlet property="quantityLabel" destination="z7Y-k8-giw" id="xq2-Yl-I3R"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
