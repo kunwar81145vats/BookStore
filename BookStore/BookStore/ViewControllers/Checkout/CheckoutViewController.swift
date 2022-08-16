@@ -50,9 +50,9 @@ class CheckoutViewController: UIViewController {
             
             APIHelper.shared.placeNewOrder(param) { response, error in
                 
-                hud.dismiss()
                 guard response != nil, error == nil else {
                     
+                    hud.dismiss()
                     if let err = error
                     {
                         if err.status == "404"
@@ -67,9 +67,13 @@ class CheckoutViewController: UIViewController {
                     return
                 }
                 
-                let obj = SuccessViewController.instantiate(appStoryboard: .checkout)
-                obj.modalPresentationStyle = .overCurrentContext
-                self.present(obj, animated: true, completion: nil)
+                self.removeAllBooks {
+                    
+                    hud.dismiss()
+                    let obj = SuccessViewController.instantiate(appStoryboard: .checkout)
+                    obj.modalPresentationStyle = .overCurrentContext
+                    self.present(obj, animated: true, completion: nil)
+                }
             }
         }
     }
@@ -112,6 +116,39 @@ class CheckoutViewController: UIViewController {
             SharedSingleton.shared.cart = resp
             self.tableView.reloadData()
             self.updatePage()
+        }
+    }
+    
+    func removeAllBooks(completion:@escaping() -> Void)
+    {
+        if let books = SharedSingleton.shared.cart?.books
+        {
+            for (ind, obj) in books.enumerated()
+            {
+                APIHelper.shared.removeBookinCart(obj.bookId) { response, error in
+                    
+                    guard response != nil, error == nil else {
+                        
+                        if let err = error
+                        {
+                            if err.status == "404"
+                            {
+                                SharedSingleton.shared.goToLoginDialog(self)
+                            }
+                            else
+                            {
+                                SharedSingleton.shared.showErrorDialog(self, message: err.message)
+                            }
+                        }
+                        return
+                    }
+                    
+                    if ind == books.count - 1
+                    {
+                        completion()
+                    }
+                }
+            }
         }
     }
     
